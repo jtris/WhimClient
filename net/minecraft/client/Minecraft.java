@@ -601,6 +601,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
 
         this.renderGlobal.makeEntityOutlineShader();
+        WhimClient.getInstance().start();
     }
 
     private void registerMetadataSerializers()

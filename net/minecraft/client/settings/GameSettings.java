@@ -287,8 +287,12 @@ public class GameSettings
     public KeyBinding ofKeyBindZoom;
     private File optionsFileOF;
 
+    /* Client module screen keybind */
+    public KeyBinding CLIENT_GUI_MOD_POS = new KeyBinding("\0HUD Config Screen", Keyboard.KEY_H, "key.categories.gameplay");
+
     public GameSettings(Minecraft mcIn, File optionsFileIn)
     {
+        addClientKeybinds();
         this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop}, this.keyBindings));
         this.hideGUI = EnumDifficulty.NORMAL;
         this.smoothCamera = "";
@@ -327,16 +331,24 @@ public class GameSettings
         this.renderDistanceChunks = 8;
         this.loadOptions();
         Config.initGameSettings(this);
+
     }
 
     public GameSettings()
     {
+        addClientKeybinds();
         this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop}, this.keyBindings));
         this.hideGUI = EnumDifficulty.NORMAL;
         this.smoothCamera = "";
         this.gammaSetting = 70.0F;
         this.forceUnicodeFont = "en_US";
         this.logger = false;
+
+    }
+
+    private void addClientKeybinds()
+    {
+        this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_MOD_POS));
     }
 
     /**

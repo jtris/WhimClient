@@ -1,5 +1,7 @@
 package net.minecraft.client.renderer;
 
+import WhimClient.event.impl.RenderEvent;
+
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
@@ -1428,6 +1430,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
             }
         }
 
+        new RenderEvent().call();
+
         this.frameFinish();
         this.waitForServerThread();
         MemoryMonitor.update();
@@ -1437,6 +1441,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         {
             this.mc.gameSettings.showLagometer = true;
         }
+
     }
 
     public void renderStreamIndicator(float partialTicks)
