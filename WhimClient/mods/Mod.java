@@ -13,7 +13,8 @@ public class Mod {
     protected final FontRenderer font;
     protected final WhimClient client;
 
-    public Mod() {
+    public Mod()
+    {
         this.mc = Minecraft.getMinecraft();
         this.font = this.mc.fontRendererObj;
         this.client = WhimClient.getInstance();
@@ -21,7 +22,8 @@ public class Mod {
         setEnabled(isEnabled);
     }
 
-    public void setEnabled(boolean isEnabled) {
+    public void setEnabled(boolean isEnabled)
+    {
         this.isEnabled = isEnabled;
 
         if (isEnabled) {
@@ -32,7 +34,8 @@ public class Mod {
         }
     }
 
-    public boolean isEnabled() {
+    public boolean isEnabled()
+    {
         return isEnabled;
     }
 

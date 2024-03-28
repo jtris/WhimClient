@@ -29,6 +29,7 @@ public class WhimClient {
     public void init()
     {
         EventManager.register(this);
+        FileManager.init();
     }
 
     public void shutdown()

@@ -4,15 +4,13 @@ import WhimClient.gui.hud.HUDManager;
 
 public class ModInstances {
 
-    private static ModHelloWorld modHelloWorld;
+    private static ModArmorStatus modArmorStatus;
 
-    public static void register(HUDManager api) {
-        modHelloWorld = new ModHelloWorld();
-        api.register(modHelloWorld);
-    }
+    public static void register(HUDManager api)
+    {
 
-    public static ModHelloWorld getModHelloWorld() {
-        return modHelloWorld;
+        modArmorStatus = new ModArmorStatus();
+        api.register(modArmorStatus);
     }
 
 }
