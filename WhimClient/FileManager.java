@@ -16,7 +16,8 @@ public class FileManager {
     private static File ROOT_DIR = new File("WhimClient");
     private static File MODS_DIR = new File(ROOT_DIR, "Mods");
 
-    public static void init() {
+    public static void init()
+    {
 
         if (!ROOT_DIR.exists()) {
             ROOT_DIR.mkdirs();
@@ -28,15 +29,18 @@ public class FileManager {
 
     }
 
-    public static Gson getGson() {
+    public static Gson getGson()
+    {
         return gson;
     }
 
-    public static File getModsDirectory() {
+    public static File getModsDirectory()
+    {
         return MODS_DIR;
     }
 
-    public static boolean writeJsonToFile(File file, Object obj) {
+    public static boolean writeJsonToFile(File file, Object obj)
+    {
 
         try {
             if (!file.exists()) {
@@ -56,7 +60,8 @@ public class FileManager {
         }
     }
 
-    public static <T extends Object> T readFromJson(File file, Class<T> class_) {
+    public static <T extends Object> T readFromJson(File file, Class<T> class_)
+    {
 
         try {
             FileInputStream fileInputStream = new FileInputStream(file);

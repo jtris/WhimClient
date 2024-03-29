@@ -1,10 +1,10 @@
 package WhimClient.mods;
 
+import java.io.File;
+
 import WhimClient.FileManager;
 import WhimClient.gui.hud.RenderComponent;
 import WhimClient.gui.hud.ScreenPosition;
-
-import java.io.File;
 
 public abstract class ModDraggable extends Mod implements RenderComponent {
 
