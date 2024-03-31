@@ -41,9 +41,13 @@ public class WhimClient {
     public void onTick(ClientTickEvent e)
     {
 
-        if (Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
+        if (Minecraft.getMinecraft().gameSettings.CLIENT_GUI_HUD_POSITIONING.isPressed()) {
             hudManager.openConfigScreen();
+        }
+        else if (Minecraft.getMinecraft().gameSettings.CLIENT_GUI_HUD_MENU.isPressed()) {
+            hudManager.openMenuScreen();
         }
 
     }
+
 }

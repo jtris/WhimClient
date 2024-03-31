@@ -21,7 +21,8 @@ public class HUDManager {
     private static HUDManager instance = null;
 
     /* returns an existing instance or creates a new one */
-    public static HUDManager getInstance () {
+    public static HUDManager getInstance()
+    {
         if (instance != null) {
             return instance;
         }
@@ -35,28 +36,38 @@ public class HUDManager {
     private Minecraft mc = Minecraft.getMinecraft();
 
     /* registers components */
-    public void register(RenderComponent... renderers) {
+    public void register(RenderComponent... renderers)
+    {
         for (RenderComponent render : renderers) {
             this.registeredRenderers.add(render);
         }
     }
 
-    public void unregister(RenderComponent... renderers) {
+    public void unregister(RenderComponent... renderers)
+    {
         for (RenderComponent render : renderers) {
             this.registeredRenderers.remove(render);
         }
     }
 
-    public Collection<RenderComponent> getRegisteredRenderers() {
+    public Collection<RenderComponent> getRegisteredRenderers()
+    {
         return Sets.newHashSet(registeredRenderers);
     }
 
-    public void openConfigScreen() {
+    public void openMenuScreen()
+    {
+        mc.displayGuiScreen(new HUDMenuScreen(this));
+    }
+
+    public void openConfigScreen()
+    {
         mc.displayGuiScreen(new HUDConfigScreen(this));
     }
 
     @EventTarget
-    public void onRender(RenderEvent e) {
+    public void onRender(RenderEvent e)
+    {
         if (mc.currentScreen == null || mc.currentScreen instanceof GuiContainer || mc.currentScreen instanceof GuiChat) {
             for (RenderComponent renderer : registeredRenderers) {
                 callRenderer(renderer);
@@ -64,7 +75,8 @@ public class HUDManager {
         }
     }
 
-    private void callRenderer(RenderComponent renderer) {
+    private void callRenderer(RenderComponent renderer)
+    {
         if (!renderer.isEnabled()) {
             return;
         }

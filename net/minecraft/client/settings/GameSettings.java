@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.security.Key;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -288,7 +289,8 @@ public class GameSettings
     private File optionsFileOF;
 
     /* Client module screen keybind */
-    public KeyBinding CLIENT_GUI_MOD_POS = new KeyBinding("\0HUD Config Screen", Keyboard.KEY_H, "key.categories.gameplay");
+    public KeyBinding CLIENT_GUI_HUD_MENU = new KeyBinding("\0HUD Menu Screen", Keyboard.KEY_H, "key.categories.gameplay");
+    public KeyBinding CLIENT_GUI_HUD_POSITIONING = new KeyBinding("\0HUD Position Config Screen", Keyboard.KEY_J, "key.categories.gameplay");
 
     public GameSettings(Minecraft mcIn, File optionsFileIn)
     {
@@ -348,7 +350,8 @@ public class GameSettings
 
     private void addClientKeybinds()
     {
-        this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_MOD_POS));
+        this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_HUD_MENU));
+        this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_HUD_POSITIONING));
     }
 
     /**
