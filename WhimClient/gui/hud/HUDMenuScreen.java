@@ -1,6 +1,6 @@
 package WhimClient.gui.hud;
 
-import net.minecraft.client.gui.Gui;
+import WhimClient.mods.impl.ModInstances;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
 
@@ -9,7 +9,33 @@ import java.io.IOException;
 
 public class HUDMenuScreen extends GuiScreen {
 
-    public HUDMenuScreen(HUDManager api) {}
+    int colorEnabled = new Color(24, 220, 79, 110).getRGB();
+    int colorDisabled = new Color(224, 36, 45, 110).getRGB();
+
+    HUDMenuButton mod1Button;
+    HUDMenuButton mod2Button;
+    HUDMenuButton mod3Button;
+    HUDMenuButton mod4Button;
+    HUDMenuButton mod5Button;
+    HUDMenuButton mod6Button;
+
+    HUDMenuButton[] buttonArray = {
+            mod1Button, mod2Button, mod3Button,
+            mod4Button, mod5Button, mod6Button
+    };
+
+    public HUDMenuScreen()
+    {
+
+        for (int i = 0; i < 6; i++) {
+            this.buttonArray[i] = new HUDMenuButton();
+        }
+
+        // load states of buttons
+        this.buttonArray[0].isEnabled = ModInstances.modArmorStatus.isEnabled();
+        this.buttonArray[1].isEnabled = ModInstances.modKeystrokes.isEnabled();
+
+    }
 
     private int getMod1ButtonX()
     {
@@ -83,25 +109,27 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawHollowRect(0, 0, this.width-1, this.height-1, 0xFFFF0000);
 
         // add mods here
-        this.drawButton(getMod1ButtonX(), getMod1ButtonY(), "Armor Status");
-        this.drawButton(getMod2ButtonX(this.width), getMod2ButtonY(), "Keystrokes");
-        this.drawButton(getMod3ButtonX(this.width), getMod3ButtonY(), "Mod 3");
-        this.drawButton(getMod4ButtonX(), getMod4ButtonY(this.height), "Mod 4");
-        this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), "Mod 5");
-        this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), "Mod 6");
+        this.drawButton(getMod1ButtonX(), getMod1ButtonY(), this.buttonArray[0].isEnabled, "Armor Status");
+        this.drawButton(getMod2ButtonX(this.width), getMod2ButtonY(), this.buttonArray[1].isEnabled, "Keystrokes");
+        this.drawButton(getMod3ButtonX(this.width), getMod3ButtonY(), this.buttonArray[2].isEnabled, "Mod 3");
+        this.drawButton(getMod4ButtonX(), getMod4ButtonY(this.height), this.buttonArray[3].isEnabled, "Mod 4");
+        this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), this.buttonArray[4].isEnabled, "Mod 5");
+        this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), this.buttonArray[5].isEnabled, "Mod 6");
 
         this.zLevel = zBackup;
     }
 
-    private void drawButton(int x, int y, String text)
+    private void drawButton(int x, int y, boolean isEnabled, String text)
     {
+
+        int color = isEnabled ? this.colorEnabled : this.colorDisabled;
 
         GuiScreen.drawRect(
                 x,
                 y,
                 x + this.width/5,
                 y + this.height/4,
-                new Color(24, 220, 79, 110).getRGB()
+                color
         );
 
         fontRendererObj.drawString(text,
@@ -132,14 +160,6 @@ public class HUDMenuScreen extends GuiScreen {
 
             this.mc.displayGuiScreen(null);
         }
-    }
-
-    @Override
-    public void onGuiClosed()
-    {
-
-        // save whether it's enabled or disabled
-        //
     }
 
     @Override
@@ -200,9 +220,16 @@ public class HUDMenuScreen extends GuiScreen {
             int modY2 = buttonProperties[i][3];
 
             if (x >= modX1 && x <= modX2 && y >= modY1 && y <= modY2) {
-                System.out.print("You've pressed button ");
-                System.out.print(i + 1);
-                System.out.println("!");
+
+                this.buttonArray[i].isEnabled = !this.buttonArray[i].isEnabled;
+
+                if (i == 0) {
+                    ModInstances.modArmorStatus.setEnabled(this.buttonArray[i].isEnabled);
+                }
+                else if (i == 1) {
+                    ModInstances.modKeystrokes.setEnabled(this.buttonArray[i].isEnabled);
+                }
+
                 break;
             }
         }

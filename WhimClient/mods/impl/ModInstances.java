@@ -4,8 +4,8 @@ import WhimClient.gui.hud.HUDManager;
 
 public class ModInstances {
 
-    private static ModArmorStatus modArmorStatus;
-    private static ModKeystrokes modKeystrokes;
+    public static ModArmorStatus modArmorStatus;
+    public static ModKeystrokes modKeystrokes;
 
     public static void register(HUDManager api)
     {

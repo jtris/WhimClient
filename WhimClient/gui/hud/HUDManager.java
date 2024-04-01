@@ -57,7 +57,7 @@ public class HUDManager {
 
     public void openMenuScreen()
     {
-        mc.displayGuiScreen(new HUDMenuScreen(this));
+        mc.displayGuiScreen(new HUDMenuScreen());
     }
 
     public void openConfigScreen()
