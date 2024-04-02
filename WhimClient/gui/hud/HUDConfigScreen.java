@@ -27,6 +27,7 @@ public class HUDConfigScreen extends GuiScreen {
         Collection<RenderComponent> registeredRenderers = api.getRegisteredRenderers();
 
         for (RenderComponent ren : registeredRenderers) {
+
             if (!ren.isEnabled()) {
                 continue;
             }

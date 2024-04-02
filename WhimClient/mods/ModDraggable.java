@@ -9,6 +9,7 @@ import WhimClient.gui.hud.ScreenPosition;
 public abstract class ModDraggable extends Mod implements RenderComponent {
 
     protected ScreenPosition pos;
+    protected boolean state;
 
     public ModDraggable()
     {
@@ -48,6 +49,26 @@ public abstract class ModDraggable extends Mod implements RenderComponent {
             loaded = ScreenPosition.fromRelativePosition(0.5, 0.5);
             this.pos = loaded;
             savePositionToFile();
+        }
+        return loaded;
+    }
+
+    public void saveStateToFile(boolean state_)
+    {
+        FileManager.writeJsonToFile(new File(getFolder(), "state.json"), state_);
+    }
+
+    public boolean loadStateFromFile()
+    {
+        boolean loaded;
+
+        try {
+            loaded = FileManager.readFromJson(new File(getFolder(), "state.json"), boolean.class);
+        }
+        catch (Exception e) {
+            loaded = false;
+            this.state = loaded;
+            saveStateToFile(loaded);
         }
         return loaded;
     }

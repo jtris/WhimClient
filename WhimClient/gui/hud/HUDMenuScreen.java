@@ -1,5 +1,6 @@
 package WhimClient.gui.hud;
 
+import WhimClient.FileManager;
 import WhimClient.mods.impl.ModInstances;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
@@ -32,6 +33,9 @@ public class HUDMenuScreen extends GuiScreen {
         }
 
         // load states of buttons
+        ModInstances.modArmorStatus.setEnabled(ModInstances.modArmorStatus.loadStateFromFile());
+        ModInstances.modKeystrokes.setEnabled(ModInstances.modKeystrokes.loadStateFromFile());
+
         this.buttonArray[0].isEnabled = ModInstances.modArmorStatus.isEnabled();
         this.buttonArray[1].isEnabled = ModInstances.modKeystrokes.isEnabled();
 
@@ -233,5 +237,22 @@ public class HUDMenuScreen extends GuiScreen {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onGuiClosed()
+    {
+        // save module states
+        boolean asState = ModInstances.modArmorStatus.isEnabled();
+        boolean ksState = ModInstances.modKeystrokes.isEnabled();
+
+        System.out.println("Closing HUD Menu screen");
+        System.out.print("armor status state: ");
+        System.out.println(asState);
+        System.out.print("keystrokes state: ");
+        System.out.println(ksState);
+
+        ModInstances.modArmorStatus.saveStateToFile(asState);
+        ModInstances.modKeystrokes.saveStateToFile(ksState);
     }
 }
