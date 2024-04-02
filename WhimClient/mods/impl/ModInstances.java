@@ -14,6 +14,14 @@ public class ModInstances {
 
         modKeystrokes = new ModKeystrokes();
         api.register(modKeystrokes);
+
+        initModInstances();
+    }
+
+    private static void initModInstances()
+    {
+        modArmorStatus.setEnabled(modArmorStatus.loadStateFromFile());
+        modKeystrokes.setEnabled(modKeystrokes.loadStateFromFile());
     }
 
 }
