@@ -1,17 +1,17 @@
-package WhimClient.mods.impl;
+package WhimClient.modules.impl;
 
 import java.awt.Color;
 
 import org.lwjgl.opengl.GL11;
 
 import WhimClient.gui.hud.ScreenPosition;
-import WhimClient.mods.ModDraggable;
+import WhimClient.modules.ModDraggable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.settings.KeyBinding;
 
 
-public class ModKeystrokes extends ModDraggable {
+public class ModuleKeystrokes extends ModDraggable {
 
     public static enum KeystrokesMode
     {

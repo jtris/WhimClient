@@ -1,4 +1,4 @@
-package WhimClient.mods;
+package WhimClient.modules;
 
 import java.io.File;
 

@@ -5,7 +5,7 @@ import WhimClient.event.EventManager;
 import WhimClient.event.EventTarget;
 import WhimClient.event.impl.ClientTickEvent;
 import WhimClient.gui.hud.HUDManager;
-import WhimClient.mods.impl.ModInstances;
+import WhimClient.modules.impl.ModuleInstances;
 import net.minecraft.client.Minecraft;
 
 public class WhimClient {
@@ -22,7 +22,7 @@ public class WhimClient {
     public void start()
     {
         hudManager = HUDManager.getInstance();
-        ModInstances.register(hudManager);
+        ModuleInstances.register(hudManager);
 
     }
 

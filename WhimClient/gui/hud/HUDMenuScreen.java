@@ -1,7 +1,6 @@
 package WhimClient.gui.hud;
 
-import WhimClient.FileManager;
-import WhimClient.mods.impl.ModInstances;
+import WhimClient.modules.impl.ModuleInstances;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
 
@@ -33,11 +32,13 @@ public class HUDMenuScreen extends GuiScreen {
         }
 
         // load states of buttons
-        ModInstances.modArmorStatus.setEnabled(ModInstances.modArmorStatus.loadStateFromFile());
-        ModInstances.modKeystrokes.setEnabled(ModInstances.modKeystrokes.loadStateFromFile());
+        ModuleInstances.modArmorStatus.setEnabled(ModuleInstances.modArmorStatus.loadStateFromFile());
+        ModuleInstances.modKeystrokes.setEnabled(ModuleInstances.modKeystrokes.loadStateFromFile());
+        ModuleInstances.modCPS.setEnabled(ModuleInstances.modCPS.loadStateFromFile());
 
-        this.buttonArray[0].isEnabled = ModInstances.modArmorStatus.isEnabled();
-        this.buttonArray[1].isEnabled = ModInstances.modKeystrokes.isEnabled();
+        this.buttonArray[0].isEnabled = ModuleInstances.modArmorStatus.isEnabled();
+        this.buttonArray[1].isEnabled = ModuleInstances.modKeystrokes.isEnabled();
+        this.buttonArray[2].isEnabled = ModuleInstances.modCPS.isEnabled();
 
     }
 
@@ -115,7 +116,7 @@ public class HUDMenuScreen extends GuiScreen {
         // add mods here
         this.drawButton(getMod1ButtonX(), getMod1ButtonY(), this.buttonArray[0].isEnabled, "Armor Status");
         this.drawButton(getMod2ButtonX(this.width), getMod2ButtonY(), this.buttonArray[1].isEnabled, "Keystrokes");
-        this.drawButton(getMod3ButtonX(this.width), getMod3ButtonY(), this.buttonArray[2].isEnabled, "Mod 3");
+        this.drawButton(getMod3ButtonX(this.width), getMod3ButtonY(), this.buttonArray[2].isEnabled, "CPS");
         this.drawButton(getMod4ButtonX(), getMod4ButtonY(this.height), this.buttonArray[3].isEnabled, "Mod 4");
         this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), this.buttonArray[4].isEnabled, "Mod 5");
         this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), this.buttonArray[5].isEnabled, "Mod 6");
@@ -228,10 +229,13 @@ public class HUDMenuScreen extends GuiScreen {
                 this.buttonArray[i].isEnabled = !this.buttonArray[i].isEnabled;
 
                 if (i == 0) {
-                    ModInstances.modArmorStatus.setEnabled(this.buttonArray[i].isEnabled);
+                    ModuleInstances.modArmorStatus.setEnabled(this.buttonArray[i].isEnabled);
                 }
                 else if (i == 1) {
-                    ModInstances.modKeystrokes.setEnabled(this.buttonArray[i].isEnabled);
+                    ModuleInstances.modKeystrokes.setEnabled(this.buttonArray[i].isEnabled);
+                }
+                else if (i == 2) {
+                    ModuleInstances.modCPS.setEnabled(this.buttonArray[i].isEnabled);
                 }
 
                 break;
@@ -243,16 +247,12 @@ public class HUDMenuScreen extends GuiScreen {
     public void onGuiClosed()
     {
         // save module states
-        boolean asState = ModInstances.modArmorStatus.isEnabled();
-        boolean ksState = ModInstances.modKeystrokes.isEnabled();
+        boolean armorStatusState = ModuleInstances.modArmorStatus.isEnabled();
+        boolean keystrokesState = ModuleInstances.modKeystrokes.isEnabled();
+        boolean cpsState = ModuleInstances.modCPS.isEnabled();
 
-        System.out.println("Closing HUD Menu screen");
-        System.out.print("armor status state: ");
-        System.out.println(asState);
-        System.out.print("keystrokes state: ");
-        System.out.println(ksState);
-
-        ModInstances.modArmorStatus.saveStateToFile(asState);
-        ModInstances.modKeystrokes.saveStateToFile(ksState);
+        ModuleInstances.modArmorStatus.saveStateToFile(armorStatusState);
+        ModuleInstances.modKeystrokes.saveStateToFile(keystrokesState);
+        ModuleInstances.modCPS.saveStateToFile(cpsState);
     }
 }

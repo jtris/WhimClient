@@ -1,4 +1,4 @@
-package WhimClient.mods;
+package WhimClient.modules;
 
 import WhimClient.WhimClient;
 import WhimClient.event.EventManager;
