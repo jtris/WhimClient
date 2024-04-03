@@ -629,7 +629,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private void createDisplay() throws LWJGLException
     {
         Display.setResizable(true);
-        Display.setTitle("My Client [change this in Minecraft.java] - Minecraft 1.8.9");
+        Display.setTitle("Whim Client");
 
         try
         {
