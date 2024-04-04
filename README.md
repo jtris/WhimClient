@@ -1,5 +1,5 @@
 # Whim Client
-- WhimClient is a 1.8.8 pvp client with Optifine
+- WhimClient is a simple 1.8.8 pvp client with Optifine
 
 
 ## Default Controls
