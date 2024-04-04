@@ -1,10 +1,10 @@
 package WhimClient.modules.impl;
 
 import WhimClient.gui.hud.ScreenPosition;
-import WhimClient.modules.ModDraggable;
+import WhimClient.modules.DraggableModule;
 import net.minecraft.potion.Potion;
 
-public class ModuleToggleSprint extends ModDraggable {
+public class ModuleToggleSprint extends DraggableModule {
 
     @Override
     public int getWidth() {

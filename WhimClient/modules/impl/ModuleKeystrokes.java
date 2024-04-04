@@ -5,13 +5,13 @@ import java.awt.Color;
 import org.lwjgl.opengl.GL11;
 
 import WhimClient.gui.hud.ScreenPosition;
-import WhimClient.modules.ModDraggable;
+import WhimClient.modules.DraggableModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.settings.KeyBinding;
 
 
-public class ModuleKeystrokes extends ModDraggable {
+public class ModuleKeystrokes extends DraggableModule {
 
     public static enum KeystrokesMode
     {

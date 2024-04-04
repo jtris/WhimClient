@@ -1,6 +1,6 @@
 package WhimClient.gui.hud;
 
-public interface RenderComponentConfig {
+public interface RenderComponentBase {
 
     public void save(ScreenPosition pos);
 

@@ -1,14 +1,14 @@
 package WhimClient.modules.impl;
 
 import WhimClient.gui.hud.ScreenPosition;
-import WhimClient.modules.ModDraggable;
+import WhimClient.modules.DraggableModule;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 
-public class ModuleArmorStatus extends ModDraggable {
+public class ModuleArmorStatus extends DraggableModule {
 
     @Override
     public int getWidth()

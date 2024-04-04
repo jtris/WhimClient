@@ -5,7 +5,7 @@ import WhimClient.event.EventManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 
-public class Mod {
+public class Module {
 
     private boolean isEnabled = true;
 
@@ -13,7 +13,7 @@ public class Mod {
     protected final FontRenderer font;
     protected final WhimClient client;
 
-    public Mod()
+    public Module()
     {
         this.mc = Minecraft.getMinecraft();
         this.font = this.mc.fontRendererObj;

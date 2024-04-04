@@ -32,15 +32,19 @@ public class HUDMenuScreen extends GuiScreen {
         }
 
         // load states of buttons
-        ModuleInstances.modArmorStatus.setEnabled(ModuleInstances.modArmorStatus.loadStateFromFile());
-        ModuleInstances.modKeystrokes.setEnabled(ModuleInstances.modKeystrokes.loadStateFromFile());
-        ModuleInstances.modCPS.setEnabled(ModuleInstances.modCPS.loadStateFromFile());
-        ModuleInstances.modToggleSprint.setEnabled(ModuleInstances.modToggleSprint.loadStateFromFile());
+        ModuleInstances.moduleArmorStatus.setEnabled(ModuleInstances.moduleArmorStatus.loadStateFromFile());
+        ModuleInstances.moduleKeystrokes.setEnabled(ModuleInstances.moduleKeystrokes.loadStateFromFile());
+        ModuleInstances.moduleCPS.setEnabled(ModuleInstances.moduleCPS.loadStateFromFile());
+        ModuleInstances.moduleToggleSprint.setEnabled(ModuleInstances.moduleToggleSprint.loadStateFromFile());
+        ModuleInstances.moduleXYZPosition.setEnabled(ModuleInstances.moduleXYZPosition.loadStateFromFile());
+        ModuleInstances.moduleFPS.setEnabled(ModuleInstances.moduleFPS.loadStateFromFile());
 
-        this.buttonArray[0].isEnabled = ModuleInstances.modArmorStatus.isEnabled();
-        this.buttonArray[1].isEnabled = ModuleInstances.modKeystrokes.isEnabled();
-        this.buttonArray[2].isEnabled = ModuleInstances.modCPS.isEnabled();
-        this.buttonArray[3].isEnabled = ModuleInstances.modToggleSprint.isEnabled();
+        this.buttonArray[0].isEnabled = ModuleInstances.moduleArmorStatus.isEnabled();
+        this.buttonArray[1].isEnabled = ModuleInstances.moduleKeystrokes.isEnabled();
+        this.buttonArray[2].isEnabled = ModuleInstances.moduleCPS.isEnabled();
+        this.buttonArray[3].isEnabled = ModuleInstances.moduleToggleSprint.isEnabled();
+        this.buttonArray[4].isEnabled = ModuleInstances.moduleXYZPosition.isEnabled();
+        this.buttonArray[5].isEnabled = ModuleInstances.moduleFPS.isEnabled();
 
     }
 
@@ -120,8 +124,8 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawButton(getMod2ButtonX(this.width), getMod2ButtonY(), this.buttonArray[1].isEnabled, "Keystrokes");
         this.drawButton(getMod3ButtonX(this.width), getMod3ButtonY(), this.buttonArray[2].isEnabled, "CPS");
         this.drawButton(getMod4ButtonX(), getMod4ButtonY(this.height), this.buttonArray[3].isEnabled, "Toggle Sprint");
-        this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), this.buttonArray[4].isEnabled, "Mod 5");
-        this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), this.buttonArray[5].isEnabled, "Mod 6");
+        this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), this.buttonArray[4].isEnabled, "XYZ");
+        this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), this.buttonArray[5].isEnabled, "FPS");
 
         this.zLevel = zBackup;
     }
@@ -231,16 +235,22 @@ public class HUDMenuScreen extends GuiScreen {
                 this.buttonArray[i].isEnabled = !this.buttonArray[i].isEnabled;
 
                 if (i == 0) {
-                    ModuleInstances.modArmorStatus.setEnabled(this.buttonArray[i].isEnabled);
+                    ModuleInstances.moduleArmorStatus.setEnabled(this.buttonArray[i].isEnabled);
                 }
                 else if (i == 1) {
-                    ModuleInstances.modKeystrokes.setEnabled(this.buttonArray[i].isEnabled);
+                    ModuleInstances.moduleKeystrokes.setEnabled(this.buttonArray[i].isEnabled);
                 }
                 else if (i == 2) {
-                    ModuleInstances.modCPS.setEnabled(this.buttonArray[i].isEnabled);
+                    ModuleInstances.moduleCPS.setEnabled(this.buttonArray[i].isEnabled);
                 }
                 else if (i == 3) {
-                    ModuleInstances.modToggleSprint.setEnabled(this.buttonArray[i].isEnabled);
+                    ModuleInstances.moduleToggleSprint.setEnabled(this.buttonArray[i].isEnabled);
+                }
+                else if (i == 4) {
+                    ModuleInstances.moduleXYZPosition.setEnabled(this.buttonArray[i].isEnabled);
+                }
+                else if (i == 5) {
+                    ModuleInstances.moduleFPS.setEnabled(this.buttonArray[i].isEnabled);
                 }
 
                 break;
@@ -252,14 +262,18 @@ public class HUDMenuScreen extends GuiScreen {
     public void onGuiClosed()
     {
         // save module states
-        boolean armorStatusState = ModuleInstances.modArmorStatus.isEnabled();
-        boolean keystrokesState = ModuleInstances.modKeystrokes.isEnabled();
-        boolean cpsState = ModuleInstances.modCPS.isEnabled();
-        boolean toggleSprintState = ModuleInstances.modToggleSprint.isEnabled();
+        boolean armorStatusState = ModuleInstances.moduleArmorStatus.isEnabled();
+        boolean keystrokesState = ModuleInstances.moduleKeystrokes.isEnabled();
+        boolean cpsState = ModuleInstances.moduleCPS.isEnabled();
+        boolean toggleSprintState = ModuleInstances.moduleToggleSprint.isEnabled();
+        boolean xyzPositionState = ModuleInstances.moduleXYZPosition.isEnabled();
+        boolean fpsState = ModuleInstances.moduleFPS.isEnabled();
 
-        ModuleInstances.modArmorStatus.saveStateToFile(armorStatusState);
-        ModuleInstances.modKeystrokes.saveStateToFile(keystrokesState);
-        ModuleInstances.modCPS.saveStateToFile(cpsState);
-        ModuleInstances.modToggleSprint.saveStateToFile(toggleSprintState);
+        ModuleInstances.moduleArmorStatus.saveStateToFile(armorStatusState);
+        ModuleInstances.moduleKeystrokes.saveStateToFile(keystrokesState);
+        ModuleInstances.moduleCPS.saveStateToFile(cpsState);
+        ModuleInstances.moduleToggleSprint.saveStateToFile(toggleSprintState);
+        ModuleInstances.moduleXYZPosition.saveStateToFile(xyzPositionState);
+        ModuleInstances.moduleFPS.saveStateToFile(fpsState);
     }
 }

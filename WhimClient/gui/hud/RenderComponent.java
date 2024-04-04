@@ -1,6 +1,6 @@
 package WhimClient.gui.hud;
 
-public interface RenderComponent extends RenderComponentConfig {
+public interface RenderComponent extends RenderComponentBase {
 
     int getWidth();
     int getHeight();

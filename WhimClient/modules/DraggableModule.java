@@ -6,12 +6,12 @@ import WhimClient.FileManager;
 import WhimClient.gui.hud.RenderComponent;
 import WhimClient.gui.hud.ScreenPosition;
 
-public abstract class ModDraggable extends Mod implements RenderComponent {
+public abstract class DraggableModule extends Module implements RenderComponent {
 
     protected ScreenPosition pos;
     protected boolean state;
 
-    public ModDraggable()
+    public DraggableModule()
     {
         pos = loadPositionFromFile();
     }

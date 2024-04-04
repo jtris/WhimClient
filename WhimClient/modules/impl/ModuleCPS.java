@@ -1,13 +1,13 @@
 package WhimClient.modules.impl;
 
 import WhimClient.gui.hud.ScreenPosition;
-import WhimClient.modules.ModDraggable;
+import WhimClient.modules.DraggableModule;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModuleCPS extends ModDraggable {
+public class ModuleCPS extends DraggableModule {
 
     private List<Long> clicks = new ArrayList<Long>();
     private boolean wasPressed;

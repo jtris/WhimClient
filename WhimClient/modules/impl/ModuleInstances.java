@@ -4,34 +4,46 @@ import WhimClient.gui.hud.HUDManager;
 
 public class ModuleInstances {
 
-    public static ModuleArmorStatus modArmorStatus;
-    public static ModuleKeystrokes modKeystrokes;
-    public static ModuleCPS modCPS;
-    public static ModuleToggleSprint modToggleSprint;
+    public static ModuleArmorStatus moduleArmorStatus;
+    public static ModuleKeystrokes moduleKeystrokes;
+    public static ModuleCPS moduleCPS;
+    public static ModuleToggleSprint moduleToggleSprint;
+
+    public static ModuleXYZPosition moduleXYZPosition;
+
+    public static ModuleFPS moduleFPS;
 
     public static void register(HUDManager api)
     {
-        modArmorStatus = new ModuleArmorStatus();
-        api.register(modArmorStatus);
+        moduleArmorStatus = new ModuleArmorStatus();
+        api.register(moduleArmorStatus);
 
-        modKeystrokes = new ModuleKeystrokes();
-        api.register(modKeystrokes);
+        moduleKeystrokes = new ModuleKeystrokes();
+        api.register(moduleKeystrokes);
 
-        modCPS = new ModuleCPS();
-        api.register(modCPS);
+        moduleCPS = new ModuleCPS();
+        api.register(moduleCPS);
 
-        modToggleSprint = new ModuleToggleSprint();
-        api.register(modToggleSprint);
+        moduleToggleSprint = new ModuleToggleSprint();
+        api.register(moduleToggleSprint);
+
+        moduleXYZPosition = new ModuleXYZPosition();
+        api.register(moduleXYZPosition);
+
+        moduleFPS = new ModuleFPS();
+        api.register(moduleFPS);
 
         initModInstances();
     }
 
     private static void initModInstances()
     {
-        modArmorStatus.setEnabled(modArmorStatus.loadStateFromFile());
-        modKeystrokes.setEnabled(modKeystrokes.loadStateFromFile());
-        modCPS.setEnabled(modCPS.loadStateFromFile());
-        modToggleSprint.setEnabled(modToggleSprint.loadStateFromFile());
+        moduleArmorStatus.setEnabled(moduleArmorStatus.loadStateFromFile());
+        moduleKeystrokes.setEnabled(moduleKeystrokes.loadStateFromFile());
+        moduleCPS.setEnabled(moduleCPS.loadStateFromFile());
+        moduleToggleSprint.setEnabled(moduleToggleSprint.loadStateFromFile());
+        moduleXYZPosition.setEnabled(moduleXYZPosition.loadStateFromFile());
+        moduleFPS.setEnabled(moduleFPS.loadStateFromFile());
     }
 
 }
