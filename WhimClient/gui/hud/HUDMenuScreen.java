@@ -58,17 +58,17 @@ public class HUDMenuScreen extends GuiScreen {
 
     private int getMod1ButtonX(int screenWidth)
     {
-        return screenWidth/8 + screenWidth/60;
+        return 39 * screenWidth/197;
     }
 
     private int getMod1ButtonY(int screenHeight)
     {
-        return screenHeight/7;
+        return screenHeight/45 * 10;
     }
 
     private int getMod2ButtonX(int screenWidth)
     {
-        return getMod1ButtonX(screenWidth) + screenWidth/7 + screenWidth/20;
+        return getMod1ButtonX(screenWidth) + screenWidth/7 + screenWidth/75;
     }
 
     private int getMod2ButtonY(int screenHeight)
@@ -78,7 +78,7 @@ public class HUDMenuScreen extends GuiScreen {
 
     private int getMod3ButtonX(int screenWidth)
     {
-        return getMod2ButtonX(screenWidth) + screenWidth/7 + screenWidth/20;
+        return getMod2ButtonX(screenWidth) + screenWidth/7 + screenWidth/75;
     }
 
     private int getMod3ButtonY(int screenHeight)
@@ -88,7 +88,7 @@ public class HUDMenuScreen extends GuiScreen {
 
     private int getMod4ButtonX(int screenWidth)
     {
-        return getMod3ButtonX(screenWidth) + screenWidth/7 + screenWidth/20;
+        return getMod3ButtonX(screenWidth) + screenWidth/7 + screenWidth/75;
     }
 
     private int getMod4ButtonY(int screenHeight)
@@ -103,7 +103,7 @@ public class HUDMenuScreen extends GuiScreen {
 
     private int getMod5ButtonY(int screenHeight)
     {
-        return getMod1ButtonY(screenHeight) + screenHeight/5 + screenHeight/15;
+        return getMod1ButtonY(screenHeight) + screenHeight/6 + screenHeight/50;
     }
 
     private int getMod6ButtonX(int screenWidth)
@@ -143,7 +143,7 @@ public class HUDMenuScreen extends GuiScreen {
 
     private int getMod9ButtonY(int screenHeight)
     {
-        return getMod5ButtonY(screenHeight) + screenHeight/5 + screenHeight/15;
+        return getMod5ButtonY(screenHeight) + screenHeight/6 + screenHeight/50;
     }
 
     private int getMod10ButtonX(int screenWidth)
@@ -213,13 +213,13 @@ public class HUDMenuScreen extends GuiScreen {
                 x,
                 y,
                 x + this.width/7,
-                y + this.height/5,
+                y + this.height/6,
                 color
         );
 
         fontRendererObj.drawString(text,
                 (int) (x + (this.width/7 -fontRendererObj.getStringWidth(text)) / 2),
-                (int) (y + 0.4 * this.height/5),
+                (int) (y + 0.4 * this.height/6),
                 0xFFFFFFFF);
     }
 
@@ -257,7 +257,7 @@ public class HUDMenuScreen extends GuiScreen {
     protected void mouseClicked(int x, int y, int button) throws IOException {
 
         int buttonWidth = this.width/7;
-        int buttonHeight = this.height/5;
+        int buttonHeight = this.height/6;
 
         int mod1X = getMod1ButtonX(this.width);
         int mod1Y = getMod1ButtonY(this.height);
