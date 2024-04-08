@@ -18,16 +18,24 @@ public class HUDMenuScreen extends GuiScreen {
     HUDMenuButton mod4Button;
     HUDMenuButton mod5Button;
     HUDMenuButton mod6Button;
+    HUDMenuButton mod7Button;
+    HUDMenuButton mod8Button;
+    HUDMenuButton mod9Button;
+    HUDMenuButton mod10Button;
+    HUDMenuButton mod11Button;
+    HUDMenuButton mod12Button;
 
     HUDMenuButton[] buttonArray = {
             mod1Button, mod2Button, mod3Button,
-            mod4Button, mod5Button, mod6Button
+            mod4Button, mod5Button, mod6Button,
+            mod7Button, mod8Button, mod9Button,
+            mod10Button, mod11Button, mod12Button
     };
 
     public HUDMenuScreen()
     {
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 12; i++) {
             this.buttonArray[i] = new HUDMenuButton();
         }
 
@@ -48,64 +56,124 @@ public class HUDMenuScreen extends GuiScreen {
 
     }
 
-    private int getMod1ButtonX()
+    private int getMod1ButtonX(int screenWidth)
     {
-        return 80;
+        return screenWidth/8 + screenWidth/60;
     }
 
-    private int getMod1ButtonY()
+    private int getMod1ButtonY(int screenHeight)
     {
-        return 60;
+        return screenHeight/7;
     }
 
     private int getMod2ButtonX(int screenWidth)
     {
-        return (int) (screenWidth/2 - 0.5 * screenWidth/5);
+        return getMod1ButtonX(screenWidth) + screenWidth/7 + screenWidth/20;
     }
 
-    private int getMod2ButtonY()
+    private int getMod2ButtonY(int screenHeight)
     {
-        return 60;
+        return getMod1ButtonY(screenHeight);
     }
 
     private int getMod3ButtonX(int screenWidth)
     {
-        return (int) (screenWidth/2 - 0.5 * screenWidth/5 + (screenWidth/2 - 80 - (screenWidth/5)/2));
+        return getMod2ButtonX(screenWidth) + screenWidth/7 + screenWidth/20;
     }
 
-    private int getMod3ButtonY()
+    private int getMod3ButtonY(int screenHeight)
     {
-        return 60;
+        return getMod1ButtonY(screenHeight);
     }
 
-    private int getMod4ButtonX()
+    private int getMod4ButtonX(int screenWidth)
     {
-        return 80;
+        return getMod3ButtonX(screenWidth) + screenWidth/7 + screenWidth/20;
     }
 
     private int getMod4ButtonY(int screenHeight)
     {
-        return 60 + screenHeight/4 + screenHeight/20;
+        return getMod1ButtonY(screenHeight);
     }
 
     private int getMod5ButtonX(int screenWidth)
     {
-        return (int) (screenWidth/2 - 0.5 * screenWidth/5);
+        return getMod1ButtonX(screenWidth);
     }
 
     private int getMod5ButtonY(int screenHeight)
     {
-        return 60 + screenHeight/4 + screenHeight/20;
+        return getMod1ButtonY(screenHeight) + screenHeight/5 + screenHeight/15;
     }
 
     private int getMod6ButtonX(int screenWidth)
     {
-        return (int) (screenWidth/2 - 0.5 * screenWidth/5 + (screenWidth/2 - 80 - (screenWidth/5)/2));
+        return getMod2ButtonX(screenWidth);
     }
 
     private int getMod6ButtonY(int screenHeight)
     {
-        return 60 + screenHeight/4 + screenHeight/20;
+        return getMod5ButtonY(screenHeight);
+    }
+
+    private int getMod7ButtonX(int screenWidth)
+    {
+        return getMod3ButtonX(screenWidth);
+    }
+
+    private int getMod7ButtonY(int screenHeight)
+    {
+        return getMod5ButtonY(screenHeight);
+    }
+
+    private int getMod8ButtonX(int screenWidth)
+    {
+        return getMod4ButtonX(screenWidth);
+    }
+
+    private int getMod8ButtonY(int screenHeight)
+    {
+        return getMod5ButtonY(screenHeight);
+    }
+
+    private int getMod9ButtonX(int screenWidth)
+    {
+        return getMod1ButtonX(screenWidth);
+    }
+
+    private int getMod9ButtonY(int screenHeight)
+    {
+        return getMod5ButtonY(screenHeight) + screenHeight/5 + screenHeight/15;
+    }
+
+    private int getMod10ButtonX(int screenWidth)
+    {
+        return getMod2ButtonX(screenWidth);
+    }
+
+    private int getMod10ButtonY(int screenHeight)
+    {
+        return getMod9ButtonY(screenHeight);
+    }
+
+    private int getMod11ButtonX(int screenWidth)
+    {
+        return getMod3ButtonX(screenWidth);
+    }
+
+    private int getMod11ButtonY(int screenHeight)
+    {
+        return getMod9ButtonY(screenHeight);
+    }
+
+    private int getMod12ButtonX(int screenWidth)
+    {
+        return getMod4ButtonX(screenWidth);
+    }
+
+    private int getMod12ButtonY(int screenHeight)
+    {
+        return getMod9ButtonY(screenHeight);
     }
 
     @Override
@@ -120,12 +188,18 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawHollowRect(0, 0, this.width-1, this.height-1, 0xFFFF0000);
 
         // add mods here
-        this.drawButton(getMod1ButtonX(), getMod1ButtonY(), this.buttonArray[0].isEnabled, "Armor Status");
-        this.drawButton(getMod2ButtonX(this.width), getMod2ButtonY(), this.buttonArray[1].isEnabled, "Keystrokes");
-        this.drawButton(getMod3ButtonX(this.width), getMod3ButtonY(), this.buttonArray[2].isEnabled, "CPS");
-        this.drawButton(getMod4ButtonX(), getMod4ButtonY(this.height), this.buttonArray[3].isEnabled, "Toggle Sprint");
+        this.drawButton(getMod1ButtonX(this.width), getMod1ButtonY(this.height), this.buttonArray[0].isEnabled, "Armor Status");
+        this.drawButton(getMod2ButtonX(this.width), getMod2ButtonY(this.height), this.buttonArray[1].isEnabled, "Keystrokes");
+        this.drawButton(getMod3ButtonX(this.width), getMod3ButtonY(this.height), this.buttonArray[2].isEnabled, "CPS");
+        this.drawButton(getMod4ButtonX(this.width), getMod4ButtonY(this.height), this.buttonArray[3].isEnabled, "Toggle Sprint");
         this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), this.buttonArray[4].isEnabled, "XYZ");
         this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), this.buttonArray[5].isEnabled, "FPS");
+        this.drawButton(getMod7ButtonX(this.width), getMod7ButtonY(this.height), this.buttonArray[6].isEnabled, "Mod 7");
+        this.drawButton(getMod8ButtonX(this.width), getMod8ButtonY(this.height), this.buttonArray[7].isEnabled, "Mod 8");
+        this.drawButton(getMod9ButtonX(this.width), getMod9ButtonY(this.height), this.buttonArray[8].isEnabled, "Mod 9");
+        this.drawButton(getMod10ButtonX(this.width), getMod10ButtonY(this.height), this.buttonArray[9].isEnabled, "Mod 10");
+        this.drawButton(getMod11ButtonX(this.width), getMod11ButtonY(this.height), this.buttonArray[10].isEnabled, "Mod 11");
+        this.drawButton(getMod12ButtonX(this.width), getMod12ButtonY(this.height), this.buttonArray[11].isEnabled, "Mod 12");
 
         this.zLevel = zBackup;
     }
@@ -138,14 +212,14 @@ public class HUDMenuScreen extends GuiScreen {
         GuiScreen.drawRect(
                 x,
                 y,
-                x + this.width/5,
-                y + this.height/4,
+                x + this.width/7,
+                y + this.height/5,
                 color
         );
 
         fontRendererObj.drawString(text,
-                (int) (x + (this.width/5 -fontRendererObj.getStringWidth(text)) / 2),
-                (int) (y + 0.4 * this.height/4),
+                (int) (x + (this.width/7 -fontRendererObj.getStringWidth(text)) / 2),
+                (int) (y + 0.4 * this.height/5),
                 0xFFFFFFFF);
     }
 
@@ -182,49 +256,61 @@ public class HUDMenuScreen extends GuiScreen {
     @Override
     protected void mouseClicked(int x, int y, int button) throws IOException {
 
-        int buttonWidth = this.width/5;
-        int buttonHeight = this.height/4;
+        int buttonWidth = this.width/7;
+        int buttonHeight = this.height/5;
 
-        int mod1X1 = getMod1ButtonX();
-        int mod1X2 = mod1X1 + buttonWidth;
-        int mod1Y1 = getMod1ButtonY();
-        int mod1Y2 = mod1Y1 + buttonHeight;
+        int mod1X = getMod1ButtonX(this.width);
+        int mod1Y = getMod1ButtonY(this.height);
 
-        int mod2X1 = getMod2ButtonX(this.width);
-        int mod2X2 = mod2X1 + buttonWidth;
-        int mod2Y1 = getMod2ButtonY();
-        int mod2Y2 = mod2Y1 + buttonHeight;
+        int mod2X = getMod2ButtonX(this.width);
+        int mod2Y = getMod2ButtonY(this.height);
 
-        int mod3X1 = getMod3ButtonX(this.width);
-        int mod3X2 = mod3X1 + buttonWidth;
-        int mod3Y1 = getMod3ButtonY();
-        int mod3Y2 = mod3Y1 + buttonHeight;
+        int mod3X = getMod3ButtonX(this.width);
+        int mod3Y = getMod3ButtonY(this.height);
 
-        int mod4X1 = getMod4ButtonX();
-        int mod4X2 = mod4X1 + buttonWidth;
-        int mod4Y1 = getMod4ButtonY(this.height);
-        int mod4Y2 = mod4Y1 + buttonHeight;
+        int mod4X = getMod4ButtonX(this.width);
+        int mod4Y = getMod4ButtonY(this.height);
 
-        int mod5X1 = getMod5ButtonX(this.width);
-        int mod5X2 = mod5X1 + buttonWidth;
-        int mod5Y1 = getMod5ButtonY(this.height);
-        int mod5Y2 = mod5Y1 + buttonHeight;
+        int mod5X = getMod5ButtonX(this.width);
+        int mod5Y = getMod5ButtonY(this.height);
 
-        int mod6X1 = getMod6ButtonX(this.width);
-        int mod6X2 = mod6X1 + buttonWidth;
-        int mod6Y1 = getMod6ButtonY(this.height);
-        int mod6Y2 = mod6Y1 + this.height;
+        int mod6X = getMod6ButtonX(this.width);
+        int mod6Y = getMod6ButtonY(this.height);
+
+        int mod7X = getMod7ButtonX(this.width);
+        int mod7Y = getMod7ButtonY(this.height);
+
+        int mod8X = getMod8ButtonX(this.width);
+        int mod8Y = getMod8ButtonY(this.height);
+
+        int mod9X = getMod9ButtonX(this.width);
+        int mod9Y = getMod9ButtonY(this.height);
+
+        int mod10X = getMod10ButtonX(this.width);
+        int mod10Y = getMod10ButtonY(this.height);
+
+        int mod11X = getMod11ButtonX(this.width);
+        int mod11Y = getMod11ButtonY(this.height);
+
+        int mod12X = getMod12ButtonX(this.width);
+        int mod12Y = getMod12ButtonY(this.height);
 
         int[][] buttonProperties = {
-                {mod1X1, mod1X2, mod1Y1, mod1Y2},
-                {mod2X1, mod2X2, mod2Y1, mod2Y2},
-                {mod3X1, mod3X2, mod3Y1, mod3Y2},
-                {mod4X1, mod4X2, mod4Y1, mod4Y2},
-                {mod5X1, mod5X2, mod5Y1, mod5Y2},
-                {mod6X1, mod6X2, mod6Y1, mod6Y2}
+                {mod1X, mod1X + buttonWidth, mod1Y, mod1Y + buttonHeight},
+                {mod2X, mod2X + buttonWidth, mod2Y, mod2Y + buttonHeight},
+                {mod3X, mod3X + buttonWidth, mod3Y, mod3Y + buttonHeight},
+                {mod4X, mod4X + buttonWidth, mod4Y, mod4Y + buttonHeight},
+                {mod5X, mod5X + buttonWidth, mod5Y, mod5Y + buttonHeight},
+                {mod6X, mod6X + buttonWidth, mod6Y, mod6Y + buttonHeight},
+                {mod7X, mod7X + buttonWidth, mod7Y, mod7Y + buttonHeight},
+                {mod8X, mod8X + buttonWidth, mod8Y, mod8Y + buttonHeight},
+                {mod9X, mod9X + buttonWidth, mod9Y, mod9Y + buttonHeight},
+                {mod10X, mod10X + buttonWidth, mod10Y, mod10Y + buttonHeight},
+                {mod11X, mod11X + buttonWidth, mod11Y, mod11Y + buttonHeight},
+                {mod12X, mod12X + buttonWidth, mod12Y, mod12Y + buttonHeight}
         };
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 12; i++) {
             int modX1 = buttonProperties[i][0];
             int modX2 = buttonProperties[i][1];
             int modY1 = buttonProperties[i][2];
