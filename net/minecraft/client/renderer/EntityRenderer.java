@@ -2,6 +2,7 @@ package net.minecraft.client.renderer;
 
 import WhimClient.event.impl.RenderEvent;
 
+import WhimClient.modules.impl.ModuleInstances;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
@@ -752,8 +753,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     GlStateManager.rotate((float)(j * 90), 0.0F, 1.0F, 0.0F);
                 }
 
-                GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
-                GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, -1.0F, 0.0F, 0.0F);
+                GlStateManager.rotate(ModuleInstances.moduleFreelook.getCameraYaw() + (ModuleInstances.moduleFreelook.getCameraYaw() - ModuleInstances.moduleFreelook.getCameraYaw()) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
+                GlStateManager.rotate(ModuleInstances.moduleFreelook.getCameraPitch() + (ModuleInstances.moduleFreelook.getCameraPitch() - ModuleInstances.moduleFreelook.getCameraPitch()) * partialTicks, -1.0F, 0.0F, 0.0F);
             }
         }
         else if (this.mc.gameSettings.showDebugInfo > 0)
@@ -766,8 +767,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
             }
             else
             {
-                float f1 = entity.rotationYaw;
-                float f2 = entity.rotationPitch;
+                float f1 = ModuleInstances.moduleFreelook.getCameraYaw();
+                float f2 = ModuleInstances.moduleFreelook.getCameraPitch();
 
                 if (this.mc.gameSettings.showDebugInfo == 2)
                 {
@@ -804,11 +805,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                 }
 
-                GlStateManager.rotate(entity.rotationPitch - f2, 1.0F, 0.0F, 0.0F);
-                GlStateManager.rotate(entity.rotationYaw - f1, 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotate(ModuleInstances.moduleFreelook.getCameraPitch() - f2, 1.0F, 0.0F, 0.0F);
+                GlStateManager.rotate(ModuleInstances.moduleFreelook.getCameraYaw() - f1, 0.0F, 1.0F, 0.0F);
                 GlStateManager.translate(0.0F, 0.0F, (float)(-d3));
-                GlStateManager.rotate(f1 - entity.rotationYaw, 0.0F, 1.0F, 0.0F);
-                GlStateManager.rotate(f2 - entity.rotationPitch, 1.0F, 0.0F, 0.0F);
+                GlStateManager.rotate(f1 - ModuleInstances.moduleFreelook.getCameraYaw(), 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotate(f2 - ModuleInstances.moduleFreelook.getCameraPitch(), 1.0F, 0.0F, 0.0F);
             }
         }
         else
@@ -820,8 +821,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
         {
             if (!this.mc.gameSettings.fovSetting)
             {
-                float f6 = entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks + 180.0F;
-                float f7 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
+                float f6 = ModuleInstances.moduleFreelook.getCameraYaw() + (ModuleInstances.moduleFreelook.getCameraYaw() - ModuleInstances.moduleFreelook.getCameraYaw()) * partialTicks + 180.0F;
+                float f7 = ModuleInstances.moduleFreelook.getCameraPitch() + (ModuleInstances.moduleFreelook.getCameraPitch() - ModuleInstances.moduleFreelook.getCameraPitch()) * partialTicks;
                 float f8 = 0.0F;
 
                 if (entity instanceof EntityAnimal)
@@ -843,7 +844,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else if (!this.mc.gameSettings.fovSetting)
         {
-            GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(ModuleInstances.moduleFreelook.getCameraPitch() + (ModuleInstances.moduleFreelook.getCameraPitch() - ModuleInstances.moduleFreelook.getCameraPitch()) * partialTicks, 1.0F, 0.0F, 0.0F);
 
             if (entity instanceof EntityAnimal)
             {
@@ -852,7 +853,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             }
             else
             {
-                GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks + 180.0F, 0.0F, 1.0F, 0.0F);
+                GlStateManager.rotate(ModuleInstances.moduleFreelook.getCameraYaw() + (ModuleInstances.moduleFreelook.getCameraYaw() - ModuleInstances.moduleFreelook.getCameraYaw()) * partialTicks + 180.0F, 0.0F, 1.0F, 0.0F);
             }
         }
 
@@ -1282,7 +1283,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             Mouse.setGrabbed(true);
         }
 
-        if (this.mc.inGameHasFocus && flag)
+        if (this.mc.inGameHasFocus && flag && ModuleInstances.moduleFreelook.overrideMouse())
         {
             this.mc.mouseHelper.mouseXYChange();
             float f = this.mc.gameSettings.mouseSensitivity * 0.6F + 0.2F;

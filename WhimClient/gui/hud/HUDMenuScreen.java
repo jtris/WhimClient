@@ -46,6 +46,7 @@ public class HUDMenuScreen extends GuiScreen {
         ModuleInstances.moduleToggleSprint.setEnabled(ModuleInstances.moduleToggleSprint.loadStateFromFile());
         ModuleInstances.moduleXYZPosition.setEnabled(ModuleInstances.moduleXYZPosition.loadStateFromFile());
         ModuleInstances.moduleFPS.setEnabled(ModuleInstances.moduleFPS.loadStateFromFile());
+        ModuleInstances.moduleFreelook.setEnabled(ModuleInstances.moduleFreelook.loadStateFromFile());
 
         this.buttonArray[0].isEnabled = ModuleInstances.moduleArmorStatus.isEnabled();
         this.buttonArray[1].isEnabled = ModuleInstances.moduleKeystrokes.isEnabled();
@@ -53,6 +54,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.buttonArray[3].isEnabled = ModuleInstances.moduleToggleSprint.isEnabled();
         this.buttonArray[4].isEnabled = ModuleInstances.moduleXYZPosition.isEnabled();
         this.buttonArray[5].isEnabled = ModuleInstances.moduleFPS.isEnabled();
+        this.buttonArray[6].isEnabled = ModuleInstances.moduleFreelook.isEnabled();
 
     }
 
@@ -194,7 +196,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawButton(getMod4ButtonX(this.width), getMod4ButtonY(this.height), this.buttonArray[3].isEnabled, "Toggle Sprint");
         this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), this.buttonArray[4].isEnabled, "XYZ");
         this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), this.buttonArray[5].isEnabled, "FPS");
-        this.drawButton(getMod7ButtonX(this.width), getMod7ButtonY(this.height), this.buttonArray[6].isEnabled, "Mod 7");
+        this.drawButton(getMod7ButtonX(this.width), getMod7ButtonY(this.height), this.buttonArray[6].isEnabled, "Freelook");
         this.drawButton(getMod8ButtonX(this.width), getMod8ButtonY(this.height), this.buttonArray[7].isEnabled, "Mod 8");
         this.drawButton(getMod9ButtonX(this.width), getMod9ButtonY(this.height), this.buttonArray[8].isEnabled, "Mod 9");
         this.drawButton(getMod10ButtonX(this.width), getMod10ButtonY(this.height), this.buttonArray[9].isEnabled, "Mod 10");
@@ -338,6 +340,9 @@ public class HUDMenuScreen extends GuiScreen {
                 else if (i == 5) {
                     ModuleInstances.moduleFPS.setEnabled(this.buttonArray[i].isEnabled);
                 }
+                else if (i == 6) {
+                    ModuleInstances.moduleFreelook.setEnabled(this.buttonArray[i].isEnabled);
+                }
 
                 break;
             }
@@ -354,6 +359,7 @@ public class HUDMenuScreen extends GuiScreen {
         boolean toggleSprintState = ModuleInstances.moduleToggleSprint.isEnabled();
         boolean xyzPositionState = ModuleInstances.moduleXYZPosition.isEnabled();
         boolean fpsState = ModuleInstances.moduleFPS.isEnabled();
+        boolean freelookState = ModuleInstances.moduleFreelook.isEnabled();
 
         ModuleInstances.moduleArmorStatus.saveStateToFile(armorStatusState);
         ModuleInstances.moduleKeystrokes.saveStateToFile(keystrokesState);
@@ -361,5 +367,6 @@ public class HUDMenuScreen extends GuiScreen {
         ModuleInstances.moduleToggleSprint.saveStateToFile(toggleSprintState);
         ModuleInstances.moduleXYZPosition.saveStateToFile(xyzPositionState);
         ModuleInstances.moduleFPS.saveStateToFile(fpsState);
+        ModuleInstances.moduleFreelook.saveStateToFile(freelookState);
     }
 }

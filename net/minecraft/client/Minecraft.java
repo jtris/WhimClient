@@ -3,6 +3,7 @@ package net.minecraft.client;
 import WhimClient.WhimClient;
 import WhimClient.event.impl.ClientTickEvent;
 
+import WhimClient.event.impl.EventKeyPressed;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -629,7 +630,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private void createDisplay() throws LWJGLException
     {
         Display.setResizable(true);
-        Display.setTitle("Whim Client 1.8.9");
+        Display.setTitle("WhimClient 1.8.9");
 
         try
         {
@@ -1915,6 +1916,12 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 if (Keyboard.getEventKeyState())
                 {
                     KeyBinding.onTick(k);
+                }
+
+                EventKeyPressed eventKeyPressed = new EventKeyPressed(k);
+                eventKeyPressed.call();
+                if (eventKeyPressed.isCancelled()) {
+                    return;
                 }
 
                 if (this.debugCrashKeyPressTime > 0L)

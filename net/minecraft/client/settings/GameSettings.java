@@ -16,7 +16,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.security.Key;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -291,10 +290,11 @@ public class GameSettings
     /* Client module screen keybind */
     public KeyBinding CLIENT_GUI_HUD_MENU = new KeyBinding("\0HUD Menu Screen", Keyboard.KEY_H, "key.categories.gameplay");
     public KeyBinding CLIENT_GUI_HUD_POSITIONING = new KeyBinding("\0HUD Position Config Screen", Keyboard.KEY_J, "key.categories.gameplay");
+    public KeyBinding CLIENT_FREELOOK = new KeyBinding("\0Freelook", Keyboard.KEY_Z, "key.categories.gameplay");
 
     public GameSettings(Minecraft mcIn, File optionsFileIn)
     {
-        addClientKeybinds();
+        addClientKeyBindings();
         this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop}, this.keyBindings));
         this.hideGUI = EnumDifficulty.NORMAL;
         this.smoothCamera = "";
@@ -338,7 +338,7 @@ public class GameSettings
 
     public GameSettings()
     {
-        addClientKeybinds();
+        addClientKeyBindings();
         this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindPickBlock, this.keyBindDrop, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindInventory, this.keyBindAttack, this.keyBindUseItem, this.keyBindPlayerList, this.keyBindCommand, this.keyBindChat, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindFullscreen, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindsHotbar, this.keyBindSpectatorOutlines, this.keyBindStreamStartStop}, this.keyBindings));
         this.hideGUI = EnumDifficulty.NORMAL;
         this.smoothCamera = "";
@@ -348,10 +348,11 @@ public class GameSettings
 
     }
 
-    private void addClientKeybinds()
+    private void addClientKeyBindings()
     {
         this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_HUD_MENU));
         this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_HUD_POSITIONING));
+        this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_FREELOOK));
     }
 
     /**

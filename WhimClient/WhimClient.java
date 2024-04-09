@@ -5,6 +5,7 @@ import WhimClient.event.EventManager;
 import WhimClient.event.EventTarget;
 import WhimClient.event.impl.ClientTickEvent;
 import WhimClient.gui.hud.HUDManager;
+import WhimClient.gui.hud.HUDMenuScreen;
 import WhimClient.modules.impl.ModuleInstances;
 import net.minecraft.client.Minecraft;
 
@@ -19,11 +20,12 @@ public class WhimClient {
 
     private HUDManager hudManager;
 
+    private boolean HUDMenuScreenIsInitialized = false;
+
     public void start()
     {
         hudManager = HUDManager.getInstance();
         ModuleInstances.register(hudManager);
-
     }
 
     public void init()
@@ -45,7 +47,12 @@ public class WhimClient {
             hudManager.openConfigScreen();
         }
         else if (Minecraft.getMinecraft().gameSettings.CLIENT_GUI_HUD_MENU.isPressed()) {
+            HUDMenuScreenIsInitialized = true;
             hudManager.openMenuScreen();
+        }
+        else if (!HUDMenuScreenIsInitialized && Minecraft.getMinecraft().gameSettings.CLIENT_FREELOOK.isPressed()) {
+            HUDMenuScreenIsInitialized = true;
+            HUDMenuScreen hms = new HUDMenuScreen();
         }
 
     }

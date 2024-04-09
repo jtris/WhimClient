@@ -8,10 +8,9 @@ public class ModuleInstances {
     public static ModuleKeystrokes moduleKeystrokes;
     public static ModuleCPS moduleCPS;
     public static ModuleToggleSprint moduleToggleSprint;
-
     public static ModuleXYZPosition moduleXYZPosition;
-
     public static ModuleFPS moduleFPS;
+    public static ModuleFreelook moduleFreelook;
 
     public static void register(HUDManager api)
     {
@@ -33,6 +32,9 @@ public class ModuleInstances {
         moduleFPS = new ModuleFPS();
         api.register(moduleFPS);
 
+        moduleFreelook = new ModuleFreelook();
+        api.register(moduleFreelook);
+
         initModInstances();
     }
 
@@ -44,6 +46,7 @@ public class ModuleInstances {
         moduleToggleSprint.setEnabled(moduleToggleSprint.loadStateFromFile());
         moduleXYZPosition.setEnabled(moduleXYZPosition.loadStateFromFile());
         moduleFPS.setEnabled(moduleFPS.loadStateFromFile());
+        moduleFreelook.setEnabled(moduleFreelook.loadStateFromFile());
     }
 
 }
