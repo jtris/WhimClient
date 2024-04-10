@@ -1,5 +1,6 @@
 package WhimClient.gui.hud;
 
+import WhimClient.modules.Module;
 import WhimClient.modules.impl.ModuleInstances;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
@@ -47,6 +48,7 @@ public class HUDMenuScreen extends GuiScreen {
         ModuleInstances.moduleXYZPosition.setEnabled(ModuleInstances.moduleXYZPosition.loadStateFromFile());
         ModuleInstances.moduleFPS.setEnabled(ModuleInstances.moduleFPS.loadStateFromFile());
         ModuleInstances.moduleFreelook.setEnabled(ModuleInstances.moduleFreelook.loadStateFromFile());
+        ModuleInstances.modulePotionEffects.setEnabled(ModuleInstances.modulePotionEffects.loadStateFromFile());
 
         this.buttonArray[0].isEnabled = ModuleInstances.moduleArmorStatus.isEnabled();
         this.buttonArray[1].isEnabled = ModuleInstances.moduleKeystrokes.isEnabled();
@@ -55,6 +57,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.buttonArray[4].isEnabled = ModuleInstances.moduleXYZPosition.isEnabled();
         this.buttonArray[5].isEnabled = ModuleInstances.moduleFPS.isEnabled();
         this.buttonArray[6].isEnabled = ModuleInstances.moduleFreelook.isEnabled();
+        this.buttonArray[7].isEnabled = ModuleInstances.modulePotionEffects.isEnabled();
 
     }
 
@@ -197,7 +200,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawButton(getMod5ButtonX(this.width), getMod5ButtonY(this.height), this.buttonArray[4].isEnabled, "XYZ");
         this.drawButton(getMod6ButtonX(this.width), getMod6ButtonY(this.height), this.buttonArray[5].isEnabled, "FPS");
         this.drawButton(getMod7ButtonX(this.width), getMod7ButtonY(this.height), this.buttonArray[6].isEnabled, "Freelook");
-        this.drawButton(getMod8ButtonX(this.width), getMod8ButtonY(this.height), this.buttonArray[7].isEnabled, "Mod 8");
+        this.drawButton(getMod8ButtonX(this.width), getMod8ButtonY(this.height), this.buttonArray[7].isEnabled, "Potion Effects");
         this.drawButton(getMod9ButtonX(this.width), getMod9ButtonY(this.height), this.buttonArray[8].isEnabled, "Mod 9");
         this.drawButton(getMod10ButtonX(this.width), getMod10ButtonY(this.height), this.buttonArray[9].isEnabled, "Mod 10");
         this.drawButton(getMod11ButtonX(this.width), getMod11ButtonY(this.height), this.buttonArray[10].isEnabled, "Mod 11");
@@ -343,6 +346,9 @@ public class HUDMenuScreen extends GuiScreen {
                 else if (i == 6) {
                     ModuleInstances.moduleFreelook.setEnabled(this.buttonArray[i].isEnabled);
                 }
+                else if (i == 7) {
+                    ModuleInstances.modulePotionEffects.setEnabled(this.buttonArray[i].isEnabled);
+                }
 
                 break;
             }
@@ -360,6 +366,7 @@ public class HUDMenuScreen extends GuiScreen {
         boolean xyzPositionState = ModuleInstances.moduleXYZPosition.isEnabled();
         boolean fpsState = ModuleInstances.moduleFPS.isEnabled();
         boolean freelookState = ModuleInstances.moduleFreelook.isEnabled();
+        boolean potionEffectsState = ModuleInstances.modulePotionEffects.isEnabled();
 
         ModuleInstances.moduleArmorStatus.saveStateToFile(armorStatusState);
         ModuleInstances.moduleKeystrokes.saveStateToFile(keystrokesState);
@@ -368,5 +375,6 @@ public class HUDMenuScreen extends GuiScreen {
         ModuleInstances.moduleXYZPosition.saveStateToFile(xyzPositionState);
         ModuleInstances.moduleFPS.saveStateToFile(fpsState);
         ModuleInstances.moduleFreelook.saveStateToFile(freelookState);
+        ModuleInstances.modulePotionEffects.saveStateToFile(potionEffectsState);
     }
 }

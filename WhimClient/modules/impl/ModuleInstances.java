@@ -11,6 +11,7 @@ public class ModuleInstances {
     public static ModuleXYZPosition moduleXYZPosition;
     public static ModuleFPS moduleFPS;
     public static ModuleFreelook moduleFreelook;
+    public static ModulePotionEffects modulePotionEffects;
 
     public static void register(HUDManager api)
     {
@@ -35,6 +36,9 @@ public class ModuleInstances {
         moduleFreelook = new ModuleFreelook();
         api.register(moduleFreelook);
 
+        modulePotionEffects = new ModulePotionEffects();
+        api.register(modulePotionEffects);
+
         initModInstances();
     }
 
@@ -47,6 +51,7 @@ public class ModuleInstances {
         moduleXYZPosition.setEnabled(moduleXYZPosition.loadStateFromFile());
         moduleFPS.setEnabled(moduleFPS.loadStateFromFile());
         moduleFreelook.setEnabled(moduleFreelook.loadStateFromFile());
+        modulePotionEffects.setEnabled(modulePotionEffects.loadStateFromFile());
     }
 
 }
