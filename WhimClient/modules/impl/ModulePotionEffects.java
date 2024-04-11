@@ -10,45 +10,36 @@ import java.util.HashMap;
 
 public class ModulePotionEffects extends DraggableModule {
 
-    private final Potion[] potions = {
-            Potion.moveSpeed, Potion.moveSlowdown, Potion.digSpeed, Potion.digSlowdown,
-            Potion.damageBoost, Potion.heal, Potion.harm, Potion.jump, Potion.confusion,
-            Potion.regeneration, Potion.resistance, Potion.fireResistance,
-            Potion.waterBreathing, Potion.invisibility, Potion.blindness,
-            Potion.nightVision, Potion.hunger, Potion.weakness, Potion.poison,
-            Potion.wither, Potion.healthBoost, Potion.absorption, Potion.saturation
-    };
-
-    private final HashMap<String, String> potionNameTranslations = new HashMap<>();
+    private final HashMap<Potion, String> potionNameTranslations = new HashMap<>();
 
     private final int capacity = this.getHeight() / (font.FONT_HEIGHT + 4);
     private int occupiedSlotsCount = 0;
 
     public ModulePotionEffects()
     {
-        this.potionNameTranslations.put("potion.moveSpeed", "speed");
-        this.potionNameTranslations.put("potion.moveSlowdown", "slowness");
-        this.potionNameTranslations.put("potion.digSpeed", "haste");
-        this.potionNameTranslations.put("potion.digSlowdown", "mining fatigue");
-        this.potionNameTranslations.put("potion.damageBoost", "strength");
-        this.potionNameTranslations.put("potion.heal", "instant health");
-        this.potionNameTranslations.put("potion.harm", "instant damage");
-        this.potionNameTranslations.put("potion.jump", "jump boost");
-        this.potionNameTranslations.put("potion.confusion", "nausea");
-        this.potionNameTranslations.put("potion.regeneration", "regeneration");
-        this.potionNameTranslations.put("potion.resistance", "resistance");
-        this.potionNameTranslations.put("potion.fireResistance", "fire resistance");
-        this.potionNameTranslations.put("potion.waterBreathing", "water breathing");
-        this.potionNameTranslations.put("potion.invisibility", "invisibility");
-        this.potionNameTranslations.put("potion.blindness", "blindness");
-        this.potionNameTranslations.put("potion.nightVision", "night vision");
-        this.potionNameTranslations.put("potion.hunger", "hunger");
-        this.potionNameTranslations.put("potion.weakness", "weakness");
-        this.potionNameTranslations.put("potion.poison", "poison");
-        this.potionNameTranslations.put("potion.wither", "wither");
-        this.potionNameTranslations.put("potion.healthBoost", "health boost");
-        this.potionNameTranslations.put("potion.absorption", "absorption");
-        this.potionNameTranslations.put("potion.saturation", "saturation");
+        this.potionNameTranslations.put(Potion.moveSpeed, "speed");
+        this.potionNameTranslations.put(Potion.moveSlowdown, "slowness");
+        this.potionNameTranslations.put(Potion.digSpeed, "haste");
+        this.potionNameTranslations.put(Potion.digSlowdown, "mining fatigue");
+        this.potionNameTranslations.put(Potion.damageBoost, "strength");
+        this.potionNameTranslations.put(Potion.heal, "instant health");
+        this.potionNameTranslations.put(Potion.harm, "instant damage");
+        this.potionNameTranslations.put(Potion.jump, "jump boost");
+        this.potionNameTranslations.put(Potion.confusion, "nausea");
+        this.potionNameTranslations.put(Potion.regeneration, "regeneration");
+        this.potionNameTranslations.put(Potion.resistance, "resistance");
+        this.potionNameTranslations.put(Potion.fireResistance, "fire resistance");
+        this.potionNameTranslations.put(Potion.waterBreathing, "water breathing");
+        this.potionNameTranslations.put(Potion.invisibility, "invisibility");
+        this.potionNameTranslations.put(Potion.blindness, "blindness");
+        this.potionNameTranslations.put(Potion.nightVision, "night vision");
+        this.potionNameTranslations.put(Potion.hunger, "hunger");
+        this.potionNameTranslations.put(Potion.weakness, "weakness");
+        this.potionNameTranslations.put(Potion.poison, "poison");
+        this.potionNameTranslations.put(Potion.wither, "wither");
+        this.potionNameTranslations.put(Potion.healthBoost, "health boost");
+        this.potionNameTranslations.put(Potion.absorption, "absorption");
+        this.potionNameTranslations.put(Potion.saturation, "saturation");
     }
 
     private void renderEffect(String name, double duration, ScreenPosition hudPos)
@@ -80,7 +71,7 @@ public class ModulePotionEffects extends DraggableModule {
     {
         this.occupiedSlotsCount = 0;
 
-        for (Potion potion : this.potions) {
+        for (Potion potion : potionNameTranslations.keySet()) {
 
             if (mc.thePlayer.isPotionActive(potion)) {
 
@@ -88,7 +79,7 @@ public class ModulePotionEffects extends DraggableModule {
                 if (this.occupiedSlotsCount > this.capacity) return;
 
                 renderEffect(
-                        potionNameTranslations.get(potion.getName()),
+                        potionNameTranslations.get(potion),
                         (double) (mc.thePlayer.getActivePotionEffect(potion).getDuration()) / 21.125,
                         pos
                 );

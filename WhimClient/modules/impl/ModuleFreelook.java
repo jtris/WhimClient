@@ -102,4 +102,8 @@ public class ModuleFreelook extends DraggableModule {
 
     @Override
     public void render(ScreenPosition pos) {}
+
+    @Override
+    public void renderDummy(ScreenPosition pos) {}
+
 }
