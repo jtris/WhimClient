@@ -53,8 +53,6 @@ public class ModulePotionEffects extends DraggableModule {
 
     private void renderEffect(String name, double duration, ScreenPosition hudPos)
     {
-                System.out.print(name);
-
                 String durationString = name;
                 durationString += " (";
                 if (duration > 60) {
@@ -74,11 +72,7 @@ public class ModulePotionEffects extends DraggableModule {
                 durationString += ")";
 
                 int screenPos = (this.capacity - this.occupiedSlotsCount) * getHeight() / this.capacity + 2;
-                System.out.println("height = " + getHeight());
-                System.out.println("pos = " + screenPos + "\n");
-
                 font.drawString(durationString, hudPos.getAbsoluteX() + 2, hudPos.getAbsoluteY() + screenPos, -1);
-                System.out.println(durationString);
     }
 
     @Override
@@ -98,8 +92,11 @@ public class ModulePotionEffects extends DraggableModule {
                         (double) (mc.thePlayer.getActivePotionEffect(potion).getDuration()) / 21.125,
                         pos
                 );
+
             }
+
         }
+
     }
 
     @Override

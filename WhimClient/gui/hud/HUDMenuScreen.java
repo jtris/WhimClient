@@ -1,6 +1,5 @@
 package WhimClient.gui.hud;
 
-import WhimClient.modules.Module;
 import WhimClient.modules.impl.ModuleInstances;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
