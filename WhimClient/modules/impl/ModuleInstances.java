@@ -12,6 +12,7 @@ public class ModuleInstances {
     public static ModuleFPS moduleFPS;
     public static ModuleFreelook moduleFreelook;
     public static ModulePotionEffects modulePotionEffects;
+    public static ModuleSpeedCounter moduleSpeedCounter;
 
     public static void register(HUDManager api)
     {
@@ -39,6 +40,9 @@ public class ModuleInstances {
         modulePotionEffects = new ModulePotionEffects();
         api.register(modulePotionEffects);
 
+        moduleSpeedCounter = new ModuleSpeedCounter();
+        api.register(moduleSpeedCounter);
+
         initModInstances();
     }
 
@@ -52,6 +56,7 @@ public class ModuleInstances {
         moduleFPS.setEnabled(moduleFPS.loadStateFromFile());
         moduleFreelook.setEnabled(moduleFreelook.loadStateFromFile());
         modulePotionEffects.setEnabled(modulePotionEffects.loadStateFromFile());
+        moduleSpeedCounter.setEnabled(moduleSpeedCounter.loadStateFromFile());
     }
 
 }
