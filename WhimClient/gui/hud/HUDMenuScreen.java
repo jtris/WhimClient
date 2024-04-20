@@ -49,6 +49,7 @@ public class HUDMenuScreen extends GuiScreen {
         ModuleInstances.moduleFreelook.setEnabled(ModuleInstances.moduleFreelook.loadStateFromFile());
         ModuleInstances.modulePotionEffects.setEnabled(ModuleInstances.modulePotionEffects.loadStateFromFile());
         ModuleInstances.moduleSpeedCounter.setEnabled(ModuleInstances.moduleSpeedCounter.loadStateFromFile());
+        ModuleInstances.moduleTPS.setEnabled(ModuleInstances.moduleTPS.loadStateFromFile());
 
         this.buttonArray[0].isEnabled = ModuleInstances.moduleArmorStatus.isEnabled();
         this.buttonArray[1].isEnabled = ModuleInstances.moduleKeystrokes.isEnabled();
@@ -59,6 +60,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.buttonArray[6].isEnabled = ModuleInstances.moduleFreelook.isEnabled();
         this.buttonArray[7].isEnabled = ModuleInstances.modulePotionEffects.isEnabled();
         this.buttonArray[8].isEnabled = ModuleInstances.moduleSpeedCounter.isEnabled();
+        this.buttonArray[9].isEnabled = ModuleInstances.moduleTPS.isEnabled();
 
     }
 
@@ -203,7 +205,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawButton(getMod7ButtonX(this.width), getMod7ButtonY(this.height), this.buttonArray[6].isEnabled, "Freelook");
         this.drawButton(getMod8ButtonX(this.width), getMod8ButtonY(this.height), this.buttonArray[7].isEnabled, "Potion Effects");
         this.drawButton(getMod9ButtonX(this.width), getMod9ButtonY(this.height), this.buttonArray[8].isEnabled, "Speed counter");
-        this.drawButton(getMod10ButtonX(this.width), getMod10ButtonY(this.height), this.buttonArray[9].isEnabled, "Mod 10");
+        this.drawButton(getMod10ButtonX(this.width), getMod10ButtonY(this.height), this.buttonArray[9].isEnabled, "TPS");
         this.drawButton(getMod11ButtonX(this.width), getMod11ButtonY(this.height), this.buttonArray[10].isEnabled, "Mod 11");
         this.drawButton(getMod12ButtonX(this.width), getMod12ButtonY(this.height), this.buttonArray[11].isEnabled, "Mod 12");
 
@@ -353,6 +355,9 @@ public class HUDMenuScreen extends GuiScreen {
                 else if (i == 8) {
                     ModuleInstances.moduleSpeedCounter.setEnabled(this.buttonArray[i].isEnabled);
                 }
+                else if (i == 9) {
+                    ModuleInstances.moduleTPS.setEnabled(this.buttonArray[i].isEnabled);
+                }
 
                 break;
             }
@@ -372,6 +377,7 @@ public class HUDMenuScreen extends GuiScreen {
         boolean freelookState = ModuleInstances.moduleFreelook.isEnabled();
         boolean potionEffectsState = ModuleInstances.modulePotionEffects.isEnabled();
         boolean speedCounterState = ModuleInstances.moduleSpeedCounter.isEnabled();
+        boolean tpsState = ModuleInstances.moduleTPS.isEnabled();
 
         ModuleInstances.moduleArmorStatus.saveStateToFile(armorStatusState);
         ModuleInstances.moduleKeystrokes.saveStateToFile(keystrokesState);
@@ -382,5 +388,6 @@ public class HUDMenuScreen extends GuiScreen {
         ModuleInstances.moduleFreelook.saveStateToFile(freelookState);
         ModuleInstances.modulePotionEffects.saveStateToFile(potionEffectsState);
         ModuleInstances.moduleSpeedCounter.saveStateToFile(speedCounterState);
+        ModuleInstances.moduleTPS.saveStateToFile(tpsState);
     }
 }
