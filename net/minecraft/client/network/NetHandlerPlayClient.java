@@ -1,5 +1,6 @@
 package net.minecraft.client.network;
 
+import WhimClient.modules.impl.ModuleInstances;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -1173,6 +1174,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
      */
     public void handleConfirmTransaction(S32PacketConfirmTransaction packetIn)
     {
+        ModuleInstances.moduleTPS.updateTPS(System.currentTimeMillis());
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
         Container container = null;
         EntityPlayer entityplayer = this.gameController.thePlayer;

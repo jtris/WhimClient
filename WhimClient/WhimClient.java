@@ -1,6 +1,5 @@
 package WhimClient;
 
-
 import WhimClient.event.EventManager;
 import WhimClient.event.EventTarget;
 import WhimClient.event.impl.ClientTickEvent;
