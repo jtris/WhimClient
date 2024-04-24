@@ -12,6 +12,8 @@ public class HUDMenuScreen extends GuiScreen {
     int colorEnabled = new Color(24, 220, 79, 110).getRGB();
     int colorDisabled = new Color(224, 36, 45, 110).getRGB();
 
+    int[][] buttonBoundaries;
+
     HUDMenuButton mod1Button;
     HUDMenuButton mod2Button;
     HUDMenuButton mod3Button;
@@ -61,6 +63,65 @@ public class HUDMenuScreen extends GuiScreen {
         this.buttonArray[7].isEnabled = ModuleInstances.modulePotionEffects.isEnabled();
         this.buttonArray[8].isEnabled = ModuleInstances.moduleSpeedCounter.isEnabled();
         this.buttonArray[9].isEnabled = ModuleInstances.moduleTPS.isEnabled();
+
+    }
+
+    private void initButtonBoundaries(int screenWidth, int screenHeight)
+    {
+
+        int buttonWidth = screenWidth/7;
+        int buttonHeight = screenHeight/6;
+
+        int mod1X = getMod1ButtonX(screenWidth);
+        int mod1Y = getMod1ButtonY(screenHeight);
+
+        int mod2X = getMod2ButtonX(screenWidth);
+        int mod2Y = getMod2ButtonY(screenHeight);
+
+        int mod3X = getMod3ButtonX(screenWidth);
+        int mod3Y = getMod3ButtonY(screenHeight);
+
+        int mod4X = getMod4ButtonX(screenWidth);
+        int mod4Y = getMod4ButtonY(screenHeight);
+
+        int mod5X = getMod5ButtonX(screenWidth);
+        int mod5Y = getMod5ButtonY(screenHeight);
+
+        int mod6X = getMod6ButtonX(screenWidth);
+        int mod6Y = getMod6ButtonY(screenHeight);
+
+        int mod7X = getMod7ButtonX(screenWidth);
+        int mod7Y = getMod7ButtonY(screenHeight);
+
+        int mod8X = getMod8ButtonX(screenWidth);
+        int mod8Y = getMod8ButtonY(screenHeight);
+
+        int mod9X = getMod9ButtonX(screenWidth);
+        int mod9Y = getMod9ButtonY(screenHeight);
+
+        int mod10X = getMod10ButtonX(screenWidth);
+        int mod10Y = getMod10ButtonY(screenHeight);
+
+        int mod11X = getMod11ButtonX(screenWidth);
+        int mod11Y = getMod11ButtonY(screenHeight);
+
+        int mod12X = getMod12ButtonX(screenWidth);
+        int mod12Y = getMod12ButtonY(screenHeight);
+
+        this.buttonBoundaries = new int[][]{
+                {mod1X, mod1X + buttonWidth, mod1Y, mod1Y + buttonHeight},
+                {mod2X, mod2X + buttonWidth, mod2Y, mod2Y + buttonHeight},
+                {mod3X, mod3X + buttonWidth, mod3Y, mod3Y + buttonHeight},
+                {mod4X, mod4X + buttonWidth, mod4Y, mod4Y + buttonHeight},
+                {mod5X, mod5X + buttonWidth, mod5Y, mod5Y + buttonHeight},
+                {mod6X, mod6X + buttonWidth, mod6Y, mod6Y + buttonHeight},
+                {mod7X, mod7X + buttonWidth, mod7Y, mod7Y + buttonHeight},
+                {mod8X, mod8X + buttonWidth, mod8Y, mod8Y + buttonHeight},
+                {mod9X, mod9X + buttonWidth, mod9Y, mod9Y + buttonHeight},
+                {mod10X, mod10X + buttonWidth, mod10Y, mod10Y + buttonHeight},
+                {mod11X, mod11X + buttonWidth, mod11Y, mod11Y + buttonHeight},
+                {mod12X, mod12X + buttonWidth, mod12Y, mod12Y + buttonHeight}
+        };
 
     }
 
@@ -262,67 +323,15 @@ public class HUDMenuScreen extends GuiScreen {
     }
 
     @Override
-    protected void mouseClicked(int x, int y, int button) throws IOException {
-
-        int buttonWidth = this.width/7;
-        int buttonHeight = this.height/6;
-
-        int mod1X = getMod1ButtonX(this.width);
-        int mod1Y = getMod1ButtonY(this.height);
-
-        int mod2X = getMod2ButtonX(this.width);
-        int mod2Y = getMod2ButtonY(this.height);
-
-        int mod3X = getMod3ButtonX(this.width);
-        int mod3Y = getMod3ButtonY(this.height);
-
-        int mod4X = getMod4ButtonX(this.width);
-        int mod4Y = getMod4ButtonY(this.height);
-
-        int mod5X = getMod5ButtonX(this.width);
-        int mod5Y = getMod5ButtonY(this.height);
-
-        int mod6X = getMod6ButtonX(this.width);
-        int mod6Y = getMod6ButtonY(this.height);
-
-        int mod7X = getMod7ButtonX(this.width);
-        int mod7Y = getMod7ButtonY(this.height);
-
-        int mod8X = getMod8ButtonX(this.width);
-        int mod8Y = getMod8ButtonY(this.height);
-
-        int mod9X = getMod9ButtonX(this.width);
-        int mod9Y = getMod9ButtonY(this.height);
-
-        int mod10X = getMod10ButtonX(this.width);
-        int mod10Y = getMod10ButtonY(this.height);
-
-        int mod11X = getMod11ButtonX(this.width);
-        int mod11Y = getMod11ButtonY(this.height);
-
-        int mod12X = getMod12ButtonX(this.width);
-        int mod12Y = getMod12ButtonY(this.height);
-
-        int[][] buttonProperties = {
-                {mod1X, mod1X + buttonWidth, mod1Y, mod1Y + buttonHeight},
-                {mod2X, mod2X + buttonWidth, mod2Y, mod2Y + buttonHeight},
-                {mod3X, mod3X + buttonWidth, mod3Y, mod3Y + buttonHeight},
-                {mod4X, mod4X + buttonWidth, mod4Y, mod4Y + buttonHeight},
-                {mod5X, mod5X + buttonWidth, mod5Y, mod5Y + buttonHeight},
-                {mod6X, mod6X + buttonWidth, mod6Y, mod6Y + buttonHeight},
-                {mod7X, mod7X + buttonWidth, mod7Y, mod7Y + buttonHeight},
-                {mod8X, mod8X + buttonWidth, mod8Y, mod8Y + buttonHeight},
-                {mod9X, mod9X + buttonWidth, mod9Y, mod9Y + buttonHeight},
-                {mod10X, mod10X + buttonWidth, mod10Y, mod10Y + buttonHeight},
-                {mod11X, mod11X + buttonWidth, mod11Y, mod11Y + buttonHeight},
-                {mod12X, mod12X + buttonWidth, mod12Y, mod12Y + buttonHeight}
-        };
+    protected void mouseClicked(int x, int y, int button) throws IOException
+    {
+        initButtonBoundaries(this.width, this.height);
 
         for (int i = 0; i < 12; i++) {
-            int modX1 = buttonProperties[i][0];
-            int modX2 = buttonProperties[i][1];
-            int modY1 = buttonProperties[i][2];
-            int modY2 = buttonProperties[i][3];
+            int modX1 = this.buttonBoundaries[i][0];
+            int modX2 = this.buttonBoundaries[i][1];
+            int modY1 = this.buttonBoundaries[i][2];
+            int modY2 = this.buttonBoundaries[i][3];
 
             if (x >= modX1 && x <= modX2 && y >= modY1 && y <= modY2) {
 
