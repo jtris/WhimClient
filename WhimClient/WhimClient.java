@@ -51,7 +51,7 @@ public class WhimClient {
         }
         else if (!HUDMenuScreenIsInitialized && Minecraft.getMinecraft().gameSettings.CLIENT_FREELOOK.isPressed()) {
             HUDMenuScreenIsInitialized = true;
-            HUDMenuScreen hms = new HUDMenuScreen();
+            HUDMenuScreen _ = new HUDMenuScreen();
         }
 
     }

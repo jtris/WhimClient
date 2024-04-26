@@ -1,5 +1,6 @@
 package WhimClient.gui.hud;
 
+import WhimClient.modules.DraggableModule;
 import WhimClient.modules.impl.ModuleInstances;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
@@ -42,27 +43,13 @@ public class HUDMenuScreen extends GuiScreen {
         }
 
         // load states of buttons
-        ModuleInstances.moduleArmorStatus.setEnabled(ModuleInstances.moduleArmorStatus.loadStateFromFile());
-        ModuleInstances.moduleKeystrokes.setEnabled(ModuleInstances.moduleKeystrokes.loadStateFromFile());
-        ModuleInstances.moduleCPS.setEnabled(ModuleInstances.moduleCPS.loadStateFromFile());
-        ModuleInstances.moduleToggleSprint.setEnabled(ModuleInstances.moduleToggleSprint.loadStateFromFile());
-        ModuleInstances.moduleXYZPosition.setEnabled(ModuleInstances.moduleXYZPosition.loadStateFromFile());
-        ModuleInstances.moduleFPS.setEnabled(ModuleInstances.moduleFPS.loadStateFromFile());
-        ModuleInstances.moduleFreelook.setEnabled(ModuleInstances.moduleFreelook.loadStateFromFile());
-        ModuleInstances.modulePotionEffects.setEnabled(ModuleInstances.modulePotionEffects.loadStateFromFile());
-        ModuleInstances.moduleSpeedCounter.setEnabled(ModuleInstances.moduleSpeedCounter.loadStateFromFile());
-        ModuleInstances.moduleTPS.setEnabled(ModuleInstances.moduleTPS.loadStateFromFile());
+        for (DraggableModule module : ModuleInstances.modulesArray) {
+            module.setEnabled(module.loadStateFromFile());
+        }
 
-        this.buttonArray[0].isEnabled = ModuleInstances.moduleArmorStatus.isEnabled();
-        this.buttonArray[1].isEnabled = ModuleInstances.moduleKeystrokes.isEnabled();
-        this.buttonArray[2].isEnabled = ModuleInstances.moduleCPS.isEnabled();
-        this.buttonArray[3].isEnabled = ModuleInstances.moduleToggleSprint.isEnabled();
-        this.buttonArray[4].isEnabled = ModuleInstances.moduleXYZPosition.isEnabled();
-        this.buttonArray[5].isEnabled = ModuleInstances.moduleFPS.isEnabled();
-        this.buttonArray[6].isEnabled = ModuleInstances.moduleFreelook.isEnabled();
-        this.buttonArray[7].isEnabled = ModuleInstances.modulePotionEffects.isEnabled();
-        this.buttonArray[8].isEnabled = ModuleInstances.moduleSpeedCounter.isEnabled();
-        this.buttonArray[9].isEnabled = ModuleInstances.moduleTPS.isEnabled();
+        for (int i = 0; i < ModuleInstances.modulesArray.size(); i++) {
+            this.buttonArray[i].isEnabled = ModuleInstances.modulesArray.get(i).isEnabled();
+        }
 
     }
 
@@ -336,37 +323,7 @@ public class HUDMenuScreen extends GuiScreen {
             if (x >= modX1 && x <= modX2 && y >= modY1 && y <= modY2) {
 
                 this.buttonArray[i].isEnabled = !this.buttonArray[i].isEnabled;
-
-                if (i == 0) {
-                    ModuleInstances.moduleArmorStatus.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 1) {
-                    ModuleInstances.moduleKeystrokes.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 2) {
-                    ModuleInstances.moduleCPS.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 3) {
-                    ModuleInstances.moduleToggleSprint.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 4) {
-                    ModuleInstances.moduleXYZPosition.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 5) {
-                    ModuleInstances.moduleFPS.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 6) {
-                    ModuleInstances.moduleFreelook.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 7) {
-                    ModuleInstances.modulePotionEffects.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 8) {
-                    ModuleInstances.moduleSpeedCounter.setEnabled(this.buttonArray[i].isEnabled);
-                }
-                else if (i == 9) {
-                    ModuleInstances.moduleTPS.setEnabled(this.buttonArray[i].isEnabled);
-                }
+                ModuleInstances.modulesArray.get(i).setEnabled(this.buttonArray[i].isEnabled);
 
                 break;
             }
@@ -376,27 +333,11 @@ public class HUDMenuScreen extends GuiScreen {
     @Override
     public void onGuiClosed()
     {
-        // save module states
-        boolean armorStatusState = ModuleInstances.moduleArmorStatus.isEnabled();
-        boolean keystrokesState = ModuleInstances.moduleKeystrokes.isEnabled();
-        boolean cpsState = ModuleInstances.moduleCPS.isEnabled();
-        boolean toggleSprintState = ModuleInstances.moduleToggleSprint.isEnabled();
-        boolean xyzPositionState = ModuleInstances.moduleXYZPosition.isEnabled();
-        boolean fpsState = ModuleInstances.moduleFPS.isEnabled();
-        boolean freelookState = ModuleInstances.moduleFreelook.isEnabled();
-        boolean potionEffectsState = ModuleInstances.modulePotionEffects.isEnabled();
-        boolean speedCounterState = ModuleInstances.moduleSpeedCounter.isEnabled();
-        boolean tpsState = ModuleInstances.moduleTPS.isEnabled();
 
-        ModuleInstances.moduleArmorStatus.saveStateToFile(armorStatusState);
-        ModuleInstances.moduleKeystrokes.saveStateToFile(keystrokesState);
-        ModuleInstances.moduleCPS.saveStateToFile(cpsState);
-        ModuleInstances.moduleToggleSprint.saveStateToFile(toggleSprintState);
-        ModuleInstances.moduleXYZPosition.saveStateToFile(xyzPositionState);
-        ModuleInstances.moduleFPS.saveStateToFile(fpsState);
-        ModuleInstances.moduleFreelook.saveStateToFile(freelookState);
-        ModuleInstances.modulePotionEffects.saveStateToFile(potionEffectsState);
-        ModuleInstances.moduleSpeedCounter.saveStateToFile(speedCounterState);
-        ModuleInstances.moduleTPS.saveStateToFile(tpsState);
+        // save module states
+        for (DraggableModule module : ModuleInstances.modulesArray) {
+            module.saveStateToFile(module.isEnabled());
+        }
+
     }
 }
