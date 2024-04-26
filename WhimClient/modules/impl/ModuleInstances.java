@@ -19,6 +19,8 @@ public class ModuleInstances {
     public static ModuleSpeedCounter moduleSpeedCounter;
     public static ModuleTPS moduleTPS;
 
+    public static ModuleCompass moduleCompass;
+
     public static List<DraggableModule> modulesArray;
 
     public static void register(HUDManager api)
@@ -64,6 +66,10 @@ public class ModuleInstances {
         moduleTPS = new ModuleTPS();
         api.register(moduleTPS);
         modulesArray.add(moduleTPS);
+
+        moduleCompass = new ModuleCompass();
+        api.register(moduleCompass);
+        modulesArray.add(moduleCompass);
 
         initModInstances();
     }

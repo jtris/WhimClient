@@ -254,7 +254,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawButton(getMod8ButtonX(this.width), getMod8ButtonY(this.height), this.buttonArray[7].isEnabled, "Potion Effects");
         this.drawButton(getMod9ButtonX(this.width), getMod9ButtonY(this.height), this.buttonArray[8].isEnabled, "Speed counter");
         this.drawButton(getMod10ButtonX(this.width), getMod10ButtonY(this.height), this.buttonArray[9].isEnabled, "TPS");
-        this.drawButton(getMod11ButtonX(this.width), getMod11ButtonY(this.height), this.buttonArray[10].isEnabled, "Mod 11");
+        this.drawButton(getMod11ButtonX(this.width), getMod11ButtonY(this.height), this.buttonArray[10].isEnabled, "Compass");
         this.drawButton(getMod12ButtonX(this.width), getMod12ButtonY(this.height), this.buttonArray[11].isEnabled, "Mod 12");
 
         this.zLevel = zBackup;
@@ -274,7 +274,7 @@ public class HUDMenuScreen extends GuiScreen {
         );
 
         fontRendererObj.drawString(text,
-                (int) (x + (this.width/7 -fontRendererObj.getStringWidth(text)) / 2),
+                (int) (x + (this.width/7 - fontRendererObj.getStringWidth(text)) / 2),
                 (int) (y + 0.4 * this.height/6),
                 0xFFFFFFFF);
     }
