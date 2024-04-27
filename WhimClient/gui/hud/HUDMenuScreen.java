@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public class HUDMenuScreen extends GuiScreen {
 
-    int colorEnabled = new Color(24, 220, 79, 110).getRGB();
-    int colorDisabled = new Color(224, 36, 45, 110).getRGB();
+    int colorEnabled = new Color(24, 220, 79, 100).getRGB();
+    int colorDisabled = new Color(97, 102, 98, 100).getRGB();
 
     int[][] buttonBoundaries;
 

@@ -57,7 +57,10 @@ public class HUDConfigScreen extends GuiScreen {
             ScreenPosition pos = renderers.get(renderer);
 
             renderer.renderDummy(pos);
-            this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderer.getWidth(), renderer.getHeight(), 0xFF00FFFF);
+
+            if (renderer.getWidth() != 0 && renderer.getHeight() != 0) {
+                this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderer.getWidth(), renderer.getHeight(), 0xFF00FFFF);
+            }
         }
 
         this.zLevel = zBackup;

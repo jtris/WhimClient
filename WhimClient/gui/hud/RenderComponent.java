@@ -10,6 +10,10 @@ public interface RenderComponent extends RenderComponentBase {
 
     /* called when rendering the `position screen` */
     default void renderDummy(ScreenPosition pos) {
+
+        if (getWidth() == 0 || getHeight() == 0) {
+            return;
+        }
         render(pos);
     }
 
