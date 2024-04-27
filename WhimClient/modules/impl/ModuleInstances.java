@@ -18,8 +18,8 @@ public class ModuleInstances {
     public static ModulePotionEffects modulePotionEffects;
     public static ModuleSpeedCounter moduleSpeedCounter;
     public static ModuleTPS moduleTPS;
-
     public static ModuleCompass moduleCompass;
+    public static ModuleFullbright moduleFullbright;
 
     public static List<DraggableModule> modulesArray;
 
@@ -70,6 +70,10 @@ public class ModuleInstances {
         moduleCompass = new ModuleCompass();
         api.register(moduleCompass);
         modulesArray.add(moduleCompass);
+
+        moduleFullbright = new ModuleFullbright();
+        api.register(moduleFullbright);
+        modulesArray.add(moduleFullbright);
 
         initModInstances();
     }

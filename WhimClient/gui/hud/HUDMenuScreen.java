@@ -1,6 +1,8 @@
 package WhimClient.gui.hud;
 
 import WhimClient.modules.DraggableModule;
+import WhimClient.modules.Module;
+import WhimClient.modules.impl.ModuleFullbright;
 import WhimClient.modules.impl.ModuleInstances;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
@@ -255,7 +257,7 @@ public class HUDMenuScreen extends GuiScreen {
         this.drawButton(getMod9ButtonX(this.width), getMod9ButtonY(this.height), this.buttonArray[8].isEnabled, "Speed counter");
         this.drawButton(getMod10ButtonX(this.width), getMod10ButtonY(this.height), this.buttonArray[9].isEnabled, "TPS");
         this.drawButton(getMod11ButtonX(this.width), getMod11ButtonY(this.height), this.buttonArray[10].isEnabled, "Compass");
-        this.drawButton(getMod12ButtonX(this.width), getMod12ButtonY(this.height), this.buttonArray[11].isEnabled, "Mod 12");
+        this.drawButton(getMod12ButtonX(this.width), getMod12ButtonY(this.height), this.buttonArray[11].isEnabled, "Fullbright");
 
         this.zLevel = zBackup;
     }
@@ -324,6 +326,11 @@ public class HUDMenuScreen extends GuiScreen {
 
                 this.buttonArray[i].isEnabled = !this.buttonArray[i].isEnabled;
                 ModuleInstances.modulesArray.get(i).setEnabled(this.buttonArray[i].isEnabled);
+
+                if (ModuleInstances.modulesArray.get(i) instanceof ModuleFullbright &&
+                !ModuleInstances.moduleFullbright.isEnabled()) {
+                    ModuleInstances.moduleFullbright.setGamma(1.0F);
+                }
 
                 break;
             }
