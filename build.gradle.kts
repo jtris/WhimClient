@@ -19,10 +19,10 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDir("src/me/jtris")
+            srcDir("src/main/java/me/jtris")
         }
         resources {
-            srcDir("resources")
+            srcDir("src/main/resources")
         }
     }
 }
