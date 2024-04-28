@@ -22,7 +22,7 @@ sourceSets {
             srcDir("src/me/jtris")
         }
         resources {
-            srcDir("src/me/resources")
+            srcDir("resources")
         }
     }
 }
