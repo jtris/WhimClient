@@ -48,11 +48,6 @@ public class WhimClient {
             HUDMenuScreenIsInitialized = true;
             hudManager.openMenuScreen();
         }
-        else if (!HUDMenuScreenIsInitialized && Minecraft.getMinecraft().gameSettings.CLIENT_FREELOOK.isPressed()) {
-            HUDMenuScreenIsInitialized = true;
-            hudManager.openMenuScreen();
-            Minecraft.getMinecraft().displayGuiScreen(null);
-        }
 
     }
 

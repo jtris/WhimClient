@@ -19,6 +19,8 @@ public class HUDManager {
     private HUDManager() {}
 
     private static HUDManager instance = null;
+    private static HUDConfigScreen hudConfigScreen = null;
+    private static HUDMenuScreen hudMenuScreen = null;
 
     /* returns an existing instance or creates a new one */
     public static HUDManager getInstance()
@@ -57,12 +59,18 @@ public class HUDManager {
 
     public void openMenuScreen()
     {
-        mc.displayGuiScreen(new HUDMenuScreen());
+        if (hudMenuScreen == null) {
+            hudMenuScreen = new HUDMenuScreen();
+        }
+        mc.displayGuiScreen(hudMenuScreen);
     }
 
     public void openConfigScreen()
     {
-        mc.displayGuiScreen(new HUDConfigScreen(this));
+        if (hudConfigScreen == null) {
+            hudConfigScreen = new HUDConfigScreen(this);
+        }
+        mc.displayGuiScreen(hudConfigScreen);
     }
 
     @EventTarget
