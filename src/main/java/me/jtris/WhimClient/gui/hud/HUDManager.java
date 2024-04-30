@@ -70,6 +70,7 @@ public class HUDManager {
         if (hudConfigScreen == null) {
             hudConfigScreen = new HUDConfigScreen(this);
         }
+        hudConfigScreen.reloadActiveRenderers();
         mc.displayGuiScreen(hudConfigScreen);
     }
 

@@ -32,9 +32,4 @@ public class ModuleXYZPosition extends DraggableModule {
         font.drawString(getFormattedString(), pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
     }
 
-    @Override
-    public void renderDummy(ScreenPosition pos)
-    {
-        font.drawString("XYZ: [XX.X, YY.Y, ZZ.Z]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
-    }
 }

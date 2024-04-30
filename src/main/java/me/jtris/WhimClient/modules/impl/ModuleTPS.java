@@ -19,12 +19,15 @@ public class ModuleTPS extends DraggableModule {
     }
 
     @Override
-    public int getWidth() {
-        return font.getStringWidth("TPS: 20");
+    public int getWidth()
+    {
+        int currentTps = getTPS();
+        return font.getStringWidth(currentTps == -1 ? "TPS: *20" : "TPS: " + currentTps);
     }
 
     @Override
-    public int getHeight() {
+    public int getHeight()
+    {
         return font.FONT_HEIGHT;
     }
 

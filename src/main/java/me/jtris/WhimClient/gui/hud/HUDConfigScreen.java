@@ -15,37 +15,31 @@ import net.minecraft.client.gui.ScaledResolution;
 
 
 public class HUDConfigScreen extends GuiScreen {
-
     private final HashMap<RenderComponent, ScreenPosition> renderers = new HashMap<RenderComponent, ScreenPosition>();
 
     private Optional<RenderComponent> selectedRenderer = Optional.empty();
+
+    private final Collection<RenderComponent> registeredRenderers;
 
     private int prevX, prevY;
 
     /* loads HUD components */
     public HUDConfigScreen(HUDManager api) {
-        Collection<RenderComponent> registeredRenderers = api.getRegisteredRenderers();
+        registeredRenderers = api.getRegisteredRenderers();
+    }
 
-        for (RenderComponent ren : registeredRenderers) {
-
-            if (!ren.isEnabled()) {
-                continue;
+    public void reloadActiveRenderers()
+    {
+        for (RenderComponent renderComponent : registeredRenderers) {
+            if (renderComponent.isEnabled()) {
+                renderers.put(renderComponent, renderComponent.load());
             }
-
-            ScreenPosition pos = ren.load();
-
-            if (pos == null) {
-                pos = ScreenPosition.fromRelativePosition(0.5, 0.5);
-            }
-
-            adjustBounds(ren, pos);
-            this.renderers.put(ren, pos);
-
         }
     }
 
     @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks)
+    {
         super.drawDefaultBackground();
 
         final float zBackup = this.zLevel;
@@ -53,14 +47,18 @@ public class HUDConfigScreen extends GuiScreen {
 
         this.drawHollowRect(0, 0, this.width-1, this.height-1, 0xFFFF0000);
 
-        for (RenderComponent renderer : renderers.keySet()) {
-            ScreenPosition pos = renderers.get(renderer);
-
-            renderer.renderDummy(pos);
-
-            if (renderer.getWidth() != 0 && renderer.getHeight() != 0) {
-                this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderer.getWidth(), renderer.getHeight(), 0xFF00FFFF);
+        for (RenderComponent renderComponent : registeredRenderers) {
+            if (!renderComponent.isEnabled()) {
+                continue;
             }
+
+            if (renderComponent.getWidth() == 0 && renderComponent.getHeight() == 0) {
+                continue;
+            }
+
+            ScreenPosition pos = renderComponent.load();
+            this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), renderComponent.getWidth(), renderComponent.getHeight(), 0xFF00FFFF);
+            renderComponent.renderDummy(pos);
         }
 
         this.zLevel = zBackup;
@@ -77,7 +75,8 @@ public class HUDConfigScreen extends GuiScreen {
 
     /* handles key inputs */
     @Override
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+    protected void keyTyped(char typedChar, int keyCode) throws IOException
+    {
         if (keyCode == Keyboard.KEY_ESCAPE) {
             renderers.entrySet().forEach((entry) -> {
                 entry.getKey().save(entry.getValue());
@@ -88,7 +87,8 @@ public class HUDConfigScreen extends GuiScreen {
 
     /* handles moving HUD components */
     @Override
-    protected void mouseClickMove(int mouseX, int mouseY, int button, long timeSinceLastClick) {
+    protected void mouseClickMove(int mouseX, int mouseY, int button, long timeSinceLastClick)
+    {
         if (selectedRenderer.isPresent()) {
             moveSelectedRenderBy(mouseX - prevX, mouseY - prevY);
         }
@@ -97,7 +97,8 @@ public class HUDConfigScreen extends GuiScreen {
         this.prevY = mouseY;
     }
 
-    private void moveSelectedRenderBy(int offsetX, int offsetY) {
+    private void moveSelectedRenderBy(int offsetX, int offsetY)
+    {
         RenderComponent renderer = selectedRenderer.get();
         ScreenPosition pos = renderers.get(renderer);
 
@@ -106,18 +107,21 @@ public class HUDConfigScreen extends GuiScreen {
     }
 
     @Override
-    public void onGuiClosed() {
+    public void onGuiClosed()
+    {
         for (RenderComponent renderer : renderers.keySet()) {
             renderer.save(renderers.get(renderer));
         }
     }
 
     @Override
-    public boolean doesGuiPauseGame() {
+    public boolean doesGuiPauseGame()
+    {
         return true;
     }
 
-    private void adjustBounds(RenderComponent renderer, ScreenPosition pos) {
+    private void adjustBounds(RenderComponent renderer, ScreenPosition pos)
+    {
         ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
 
         int screenWidth = res.getScaledWidth();
@@ -130,14 +134,16 @@ public class HUDConfigScreen extends GuiScreen {
     }
 
     @Override
-    protected void mouseClicked(int x, int y, int button) throws IOException {
+    protected void mouseClicked(int x, int y, int button) throws IOException
+    {
         this.prevX = x;
         this.prevY = y;
 
         loadMouseOver(x, y);
     }
 
-    private void loadMouseOver(int x, int y) {
+    private void loadMouseOver(int x, int y)
+    {
         //this.selectedRenderer = renderers.keySet().stream().filter(new MouseOverFinder(x, y)).findFirst();
         MouseOverFinder mouseOverFinder = new MouseOverFinder(x, y);
         this.selectedRenderer = renderers.keySet().stream()
