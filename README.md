@@ -15,9 +15,9 @@
 
 ## Showcase
 
-<img src="screenshots/HUDConfiguration.png" alt="HUD Configuration" width=750 height=400>
-
 <img src="screenshots/HUDMenu.png" alt="HUD Menu" width=750 height=400>
+
+<img src="screenshots/HUDConfiguration.png" alt="HUD Configuration" width=750 height=400>
 
 <img src="screenshots/normal.png" alt="the resulting visuals" width=750 height=400>
 
