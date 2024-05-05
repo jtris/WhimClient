@@ -9,7 +9,7 @@
 | -------- |-----------------------------------------------------|
 | `h`      | HUD Menu (for toggling modules on/off)              |
 | `j` | HUD Configuration (for changing modules' positions) |
-| `z` | Freelook (if toggled in the HUD Menu)               |
+| `z` | Freelook (if enabled in the HUD Menu)               |
 
 - these controls can be remapped through settings
 
@@ -26,7 +26,7 @@
 1) building from source
     - either clone this repository, or download the latest release
     - make sure that java 1.8 is installed on your computer
-    - run `./gradlew build`
+    - run `./gradlew build`, you'll then find the generated jar in `build/libs`
     - download `WhimClient.json` from the latest release
     - from this point onwards, follow the instructions for downloading the compiled client from step n. 2
    
